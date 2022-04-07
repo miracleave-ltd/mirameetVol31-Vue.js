@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+
+  server:
+    tty: true
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - './server:/usr/src'
+    ports:
+      - "8040:8000"
+
+  client:
+    stdin_open: true
+    tty: true
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    volumes:
+      - ./client/ecsite:/usr/src
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - server
