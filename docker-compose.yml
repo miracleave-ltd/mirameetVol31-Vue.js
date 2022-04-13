@@ -1,29 +1,11 @@
 version: '3.8'
 
-services:
-
-  server:
-    tty: true
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
+services: 
+  honkit:
+    # image: tukiyo3/honkit
+    build: ./docker
+    restart: always
     volumes:
-      - './server:/usr/src'
+      - ./honkit:/srv/honkit
     ports:
-      - "8040:8000"
-
-  client:
-    stdin_open: true
-    tty: true
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    volumes:
-      - ./client/ecsite:/usr/src
-    ports:
-      - "8080:8080"
-    environment:
-      - NODE_ENV=development
-    depends_on:
-      - server
+      - "4000:4000"

@@ -1,0 +1,443 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <title>アプリケーションコード修正(商品検索画面) · mirameet</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.7.1">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search-pro-fixed/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-navigator/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-collapsible-chapters/collapsible-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-hints/plugin-hints.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-insert-logo/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="meetup_Vuex.html" />
+    
+    
+    <link rel="prev" href="header_readme.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索ワードを入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="create_env_no1.html">
+            
+                <a href="create_env_no1.html">
+            
+                    
+                    環境構築 1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="create_env_no2.html">
+            
+                <a href="create_env_no2.html">
+            
+                    
+                    環境構築 2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="component_readme.html">
+            
+                <a href="component_readme.html">
+            
+                    
+                    アプリケーションコード修正(App.vue)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="header_readme.html">
+            
+                <a href="header_readme.html">
+            
+                    
+                    アプリケーションコード修正(ヘッダー)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="itemSearch_readme.html">
+            
+                <a href="itemSearch_readme.html">
+            
+                    
+                    アプリケーションコード修正(商品検索画面)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="meetup_Vuex.html">
+            
+                <a href="meetup_Vuex.html">
+            
+                    
+                    アプリケーションコード修正(商品情報詳細画面)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="create_env_no2.html">
+            
+                <a href="create_env_no2.html">
+            
+                    
+                    アプリケーションコード修正(カート画面)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="cleanup.html">
+            
+                <a href="cleanup.html">
+            
+                    
+                    local環境のCleanUp
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            HonKitで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >アプリケーションコード修正(商品検索画面)</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="アプリケーションコード修正(商品検索画面)"><a name="アプリケーションコード修正商品検索画面" class="plugin-anchor" href="#アプリケーションコード修正商品検索画面"><i class="fa fa-link" aria-hidden="true"></i></a>アプリケーションコード修正(商品検索画面)</h1>
+<h2 id="当画面に関連するソースファイル">1. 当画面に関連するソースファイル</h2>
+<p>  src\views\itemSearch.vue←修正対象</p>
+<p>  修正する前に一度、状況を確認してみましょう。</p>
+<p>  <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a></p>
+<p>  画面としては、「商品検索画面」と表示されるのみで、商品一覧は検索されていないことがわかります。</p>
+<p>  <img src="img/itemSearch1.jpg" alt="gras"></p>
+<p>  確認できたところで、あらためて修正をすすめていきましょう！</p>
+<h1 id="created_を使って画面初期表示時の処理を実装しよう。"><a name="created-を使って画面初期表示時の処理を実装しよう。" class="plugin-anchor" href="#created-を使って画面初期表示時の処理を実装しよう。"><i class="fa fa-link" aria-hidden="true"></i></a>created を使って画面初期表示時の処理を実装しよう。</h1>
+<ol>
+<li><p>Ctrl+P を押下してファイル検索を表示し、「itemSearch.vue」を開く</p>
+</li>
+<li><p>Ctrl ＋ F で検索欄を表示し、「created」内に初期表示時の処理を記述する。<br>今回は、クエリパラメータを受け取って検索処理を行う「search()」を初期表示時に実行するようにしてみます。
+以下を created に張り付けてください</p>
+</li>
+</ol>
+<p>変更前</p>
+<pre><code class="lang-javascript">  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// 初期表示時処理</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;created&apos;</span>)
+  },
+</code></pre>
+<p>変更後</p>
+<pre><code class="lang-javascript">  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// 初期表示時処理</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;created&apos;</span>)
+    <span class="hljs-built_in">this</span>.search()
+  },
+</code></pre>
+<p>   初期表示時にsearch()メソッドを呼び出すことによって、画面初期表示時に商品一覧の検索処理が行われるようになりました！</p>
+<p>  <img src="img/itemSearch2.jpg" alt="gras"></p>
+<p>  大分類、中分類を選択したり、検索ワードを入れて検索ボタンを押下すると、絞り込まれたリストが表示されます。</p>
+<h1 id="created_の処理についておさらい"><a name="created-の処理についておさらい" class="plugin-anchor" href="#created-の処理についておさらい"><i class="fa fa-link" aria-hidden="true"></i></a>created の処理についておさらい</h1>
+<p>  createdは画面初期表示時に走る処理です。正確に言うとインスタンスが生成され､データが初期化された後に実行されます。</p>
+<p>  初期表示時のデータ初期化後に実施したい処理がある場合はこの中に処理をかいていくことで実現することができます。</p>
+<p>  今回の場合は画面が初期表示される際に検索処理を行いたかったため、searchメソッドを呼び出すように変更しました。</p>
+<h1 id="mountedとの違い"><a name="mountedとの違い" class="plugin-anchor" href="#mountedとの違い"><i class="fa fa-link" aria-hidden="true"></i></a>mountedとの違い</h1>
+<p>  createdとmountedは共に画面初期表示時に走る処理です。では何が違うのでしょうか。</p>
+<p>  mountedは、インスタンスが DOM 要素にマウントされた後に実行される処理です。</p>
+<p>  getElementById等を使ってDOM要素にアクセスをしたい場合は、mountedに書くことが望ましいです。</p>
+<p>  createdの時にgetElementById(&apos;hoge&apos;)でDOMの要素を取得しようとしても取得することはできません。</p>
+<p>  mountedが実行されるタイミングではDOMの作成が完了しているのでDOMの要素が取得できるため</p>
+<p>  getElementByIdだけではなくDOMに対してアクセスを行う「jQuery」もmounted時点で使用可能となります。</p>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#mountedとの違い">mountedとの違い</a></p><li><a href="#当画面に関連するソースファイル">1. 当画面に関連するソースファイル</a></li></ul></div><a href="#当画面に関連するソースファイル" id="goTop"><i class="fa fa-arrow-up"></i></a>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="header_readme.html" class="navigation navigation-prev " aria-label="Previous page: アプリケーションコード修正(ヘッダー)">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="meetup_Vuex.html" class="navigation navigation-next " aria-label="Next page: アプリケーションコード修正(商品情報詳細画面)">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"アプリケーションコード修正(商品検索画面)","level":"1.6","depth":1,"next":{"title":"アプリケーションコード修正(商品情報詳細画面)","level":"1.7","depth":1,"path":"meetup_Vuex.md","ref":"meetup_Vuex.md","articles":[]},"previous":{"title":"アプリケーションコード修正(ヘッダー)","level":"1.5","depth":1,"path":"header_readme.md","ref":"header_readme.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"itemSearch_readme.md","mtime":"2022-04-12T11:55:20.000Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-04-13T11:12:13.282Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search-pro-fixed/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-pro-fixed/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-hide-published-with/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-collapsible-chapters/collapsible-chapters.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
