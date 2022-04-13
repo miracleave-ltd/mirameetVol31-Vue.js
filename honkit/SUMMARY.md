@@ -7,5 +7,5 @@
 * [アプリケーションコード修正(ヘッダー)](header_readme.md)
 * [アプリケーションコード修正(商品検索画面)](itemSearch_readme.md)
 * [アプリケーションコード修正(商品情報詳細画面)](meetup_Vuex.md)
-* [アプリケーションコード修正(カート画面)](create_env_no2.md)
+* [アプリケーションコード修正(カート画面)](cart.md)
 * [local環境のCleanUp](cleanup.md)
