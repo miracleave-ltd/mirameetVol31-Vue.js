@@ -1,19 +1,13 @@
 <template>
   <div id="app">
-    <Header />
     <router-view class="appView"/>
   </div>
 </template>
 
 <script>
-// Header.vueをインポート
-import Header from './components/Header'
-// components にHeader追加する
 export default {
   name: 'App',
   components: {
-    // HelloWorld,
-    Header
   }
 }
 </script>

@@ -12,12 +12,12 @@
     <div class="header-searchbar-area">
       <div class="form-group  d-flex">
         <select class="form-select selecteBox1" aria-label="Default select example" v-model="lergeCategoryCode">
-          <option value="" selected>選択してください</option>
+          <option value="" selected>大分類</option>
           <option v-for="(item,index) in lergeCategoryList" :key="index" :value="item.code">{{item.text}}</option>
         </select>
         <!-- 選択肢ボックス2 computedにする -->
         <select class="form-select selecteBox2" aria-label="Default select example" v-model="mediumCategoryCode">
-          <option value="" selected>選択してください</option>
+          <option value="" selected>中分類</option>
           <!-- ハンズオン -->
           <option v-for="(item,index) in filterdMediumCategory" :key="index" :value="item.code">{{item.text}}</option>
         </select>
@@ -63,12 +63,7 @@ export default {
   computed: {
     // 算出プロパティ(処理結果がキャッシュされ、入力値が変更されたときのみ再計算)
     filterdMediumCategory: function () {
-      if (this.lergeCategoryCode === '') {
-        return this.mediumCategoryList
-      }
-      return this.mediumCategoryList.filter((row) => {
-        return row.parentCode === this.lergeCategoryCode
-      })
+      return this.mediumCategoryList
     }
   },
   mounted: function () {

@@ -17,7 +17,7 @@
             >
               <!-- 商品画像 -->
               <a href="#" @click="detailMove(item.code)">
-                <img :src="item.image" width="80%" height="80%" />
+                <img :src="item.product_image" width="80%" height="80%" />
                 <!-- 商品名 -->
                 <p style="font-size: 2rem">{{ item.name }}</p>
                 <!-- 商品値段 -->
@@ -52,11 +52,19 @@ export default {
   },
   created: function () {
     // 初期表示時処理
+    console.log('created')
   },
   mounted: function () {
     // DOMのマウント終了後の処理
-    console.log('初期表示')
-    this.search()
+    console.log('mounted')
+  },
+  updated () {
+    // DOMが再レンダリングされる際に走る
+    console.log('updated!')
+  },
+  destroyed () {
+    // インスタンスが破壊される際に走る
+    console.log('destroyed!')
   },
   methods: {
     // メソッド(毎回呼び出す度に処理を実行)
@@ -98,15 +106,7 @@ export default {
         const response = await this.axios.get('search/', { params: { ...param } })
 
         // レスポンスを画面に反映する
-        const data = response.data
-        this.itemList = data.map((row) => {
-          return {
-            code: row.code,
-            image: row.product_image,
-            name: row.name,
-            price: row.price
-          }
-        })
+        this.itemList = response.data
       } catch (error) {
         console.log('error', error)
       }
