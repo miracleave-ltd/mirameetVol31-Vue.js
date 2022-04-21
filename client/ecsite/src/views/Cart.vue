@@ -38,7 +38,7 @@
                     <b-card-text>￥{{ getPrice(item.price,item.quantity) | money }}</b-card-text>
                     <b-button
                      variant="primary"
-                     @click.stop="handleDelete(item.index)"
+                     @click.stop="handleDelete(index)"
                     >削除</b-button>
                   </b-card>
                 </b-col>
@@ -52,7 +52,7 @@
                 title="合計金額"
                 style="max-width: 20rem;"
               >
-                <b-card-text>￥{{ getTotal | money }}円</b-card-text>
+                <b-card-text>￥{{ totalPrice | money }}円</b-card-text>
                 <b-button
                     variant="primary"
                     @click.stop="handleSubmit"
@@ -72,18 +72,12 @@ export default {
   name: 'CartList',
   data () {
     return {
+      totalPrice: 0
     }
   },
   computed: {
     getItemList () {
       return this.$store.getters.getItemList
-    },
-    getTotal () {
-      let price = 0
-      this.getItemList.forEach(element => {
-        price += element.price * element.quantity
-      })
-      return price
     }
   },
   created: function () {
@@ -91,6 +85,8 @@ export default {
   },
   mounted: function () {
     // DOMのマウント終了後の処理
+    /** 合計値取得処理 */
+    this.totalPrice = this.getTotal()
   },
   methods: {
     getPrice (price, quantity) {
@@ -102,6 +98,18 @@ export default {
     handleDelete (index) {
       // storeから該当商品を削除
       this.$store.commit('deleteItem', index)
+      /** 合計値取得処理 */
+      this.totalPrice = this.getTotal()
+    },
+    /**
+     *合計値取得
+    */
+    getTotal () {
+      let price = 0
+      this.getItemList.forEach(element => {
+        price += element.price * element.quantity
+      })
+      return price
     },
     /**
      * 購入ボタン押下
