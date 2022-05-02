@@ -2,6 +2,8 @@
 
 今回のハンズオンで使用した開発環境の削除を行います。
 
+![gras](img/環境削除.png)
+
 1. コンテナの停止  
 以下コマンドでDockerコンテナを停止します。
 ```
@@ -11,7 +13,7 @@ $ docker-compose down
 ```
 $ docker-compose ps
 Name   Command   State   Ports
-------------------------------
+  ------------------------------
 ```
 
 2. イメージの削除
@@ -58,4 +60,4 @@ rd /s /q xxxxxxxxxx
 Remove-Item xxxxxxxxxx -Recurse -Force
 ```
 
-以上。
+以上で本日のハンズオンは終了となります。皆様お疲れ様でした！

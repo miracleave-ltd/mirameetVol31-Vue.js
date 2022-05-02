@@ -4,18 +4,20 @@
 まずは、Vueの環境を立てる前にサーバーサイドとして使用する  
 Djangoフレームワークを用いてAPIサーバーを準備します。
 
-![gras](img/overview.png)
+![gras](img/環境構築.png)
 
 1. githubリポジトリにアクセス  
 以下リンクよりデモアプリのあるGithubリポジトリにアクセスします。  
-URL:https://github.com/miracleave-ltd/meet-up-22_django
-  
+URL:https://github.com/miracleave-ltd/mirameetVol29
+![gras](img/github_toppage.png)
 2. ソースコードダウンロード  
 Codeボタンより、Zipファイルをダウンロードします。
+![gras](img/github_zip.png)
 
 3. ソースコード展開  
 ダウンロードしたZipファイルを任意のフォルダに展開してください。  
 ※次の手順を進めるに当たり、展開されたフォルダをVSCodeで開くようお願いします。  
+![gras](img/open_in_vscode.png)
 
 4. サーバーの起動  
 一度ローカルでサーバーを立ち上げましょう。  

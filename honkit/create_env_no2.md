@@ -2,6 +2,14 @@
 
 続いてVueアプリケーションの準備に移ります。  
 
+![gras](img/環境構築.png)
+
+Vueの環境構築はecsiteディレクトリ直下をvscodeで開くように注意してください。vscodeが正常に動作しないことがあります。  
+以下がecsiteディレクトリになります。
+```
+mirameetVol31.-main/client/ecsite  
+```
+
 1. Dockerコンテナに入ってnpm installを実行  
 Vueプロジェクトに必要なパッケージをインストールするためにまずは下記のコマンドでDockerコンテナに入ります。
 ```
@@ -10,6 +18,10 @@ $ docker-compose exec client sh
 Dockerコンテナ内に入ったらnpmを使ってパッケージをインストールします。
 ```
 /usr/src # npm install
+```
+npmでvue/cliをインストールします。
+```
+/usr/src # npm install -g @vue/cli
 ```
 
 2. Vueアプリケーションサーバーをたてる  
