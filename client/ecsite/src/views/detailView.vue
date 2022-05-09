@@ -102,16 +102,6 @@ export default {
      * カートに入れるボタン押下
      */
     addItem () {
-      // storeに保存後ダイアログ出して検索画面に戻る
-      const param = {
-        name: this.productName,
-        description: this.description,
-        price: this.price,
-        quantity: Number(this.quantity),
-        imageUrl: this.img // 商品画像
-      }
-      this.$store.commit('pushItem', param)
-      console.log(this.$store.getters.getItemList)
       // storeに保存後ダイアログ表示して検索画面へ戻る
       this.$swal({
         title: '完了',
