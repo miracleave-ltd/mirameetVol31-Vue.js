@@ -16,11 +16,6 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    // 商品追加
-    pushItem (state, item) {
-      // 引数で渡された配列をまるごとpush
-      state.itemList.push(item)
-    },
     // 商品削除
     deleteItem (state, item) {
       // 引数で渡された行を削除
