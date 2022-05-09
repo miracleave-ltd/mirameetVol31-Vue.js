@@ -212,7 +212,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9" data-path="cleanup.html">
+        <li class="chapter " data-level="1.9" data-path="cart_answer.html">
+            
+                <a href="cart_answer.html">
+            
+                    
+                    アプリケーションコード修正(カート画面) 回答編
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="cleanup.html">
             
                 <a href="cleanup.html">
             
@@ -271,7 +284,9 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="アプリケーションコード修正(コンポーネント)"><a name="アプリケーションコード修正コンポーネント" class="plugin-anchor" href="#アプリケーションコード修正コンポーネント"><i class="fa fa-link" aria-hidden="true"></i></a>アプリケーションコード修正(コンポーネント)</h1>
-<h2 id="当画面に関連するソースファイル">1. 当画面に関連するソースファイル</h2>
+<p>当手順では、以下の赤枠部分を実施します。
+  <img src="img/handson_itemSearch.png" alt="gras"></p>
+<h1 id="1_当画面に関連するソースファイル"><a name="1当画面に関連するソースファイル" class="plugin-anchor" href="#1当画面に関連するソースファイル"><i class="fa fa-link" aria-hidden="true"></i></a>1.当画面に関連するソースファイル</h1>
 <p>  src\App.vue←修正対象</p>
 <p>  src\components\Header.vue</p>
 <p>  src\router\index.js</p>
@@ -280,13 +295,14 @@
 <p>  画面としては何もない状態であることがわかったかと思います。</p>
 <p>  <img src="img/component1.jpg" alt="gras"></p>
 <p>  確認できたところで、あらためて修正をすすめていきましょう！</p>
-<h1 id="ヘッダーをインポートして画面に配置しよう。"><a name="ヘッダーをインポートして画面に配置しよう。" class="plugin-anchor" href="#ヘッダーをインポートして画面に配置しよう。"><i class="fa fa-link" aria-hidden="true"></i></a>ヘッダーをインポートして画面に配置しよう。</h1>
+<h1 id="2_src\App_vueの修正"><a name="2srcappvueの修正" class="plugin-anchor" href="#2srcappvueの修正"><i class="fa fa-link" aria-hidden="true"></i></a>2.src\App.vueの修正</h1>
+<h2 id="ヘッダーをインポートして画面に配置しよう。">1. ヘッダーをインポートして画面に配置しよう。</h2>
 <p>src\App.vue にヘッダー用のコンポーネントをインポートし、</p>
 <p>画面上に配置します。</p>
 <ol>
-<li><p>Ctrl+P を押下してファイル検索を表示し、「App.vue」を開く</p>
+<li><p>Ctrl+P(MACの場合Command+P) を押下してファイル検索を表示し、「App.vue」を開く</p>
 </li>
-<li><p>ソースを以下のように修正してください。</p>
+<li><p>ソースを以下のように修正してください。修正したら、ファイルを上書き保存してください。</p>
 </li>
 </ol>
 <p>修正前</p>
@@ -324,21 +340,18 @@
 }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 </code></pre>
-<ol>
-<li><p>画面上部にヘッダーが実装できました。</p>
-<p><img src="img/component2.jpg" alt="gras"></p>
-<p>vueファイルは主に</p>
-<p>・templateタグ：html要素を記述する</p>
-<p>・scriptタグ：javascriptの処理を記述する</p>
-<p>・styleタグ：cssを記述する</p>
-<p>の三つのタグからなります。</p>
-<p>これらを合わせて一つのコンポーネントとして作成し、</p>
-<p>それら組み合わせて1つのページを作るのがVue.jsの大枠の考え方です。</p>
-<p>コンポーネントを呼び出すにはまずscriptタグ内で呼び出すコンポーネントのvueファイルをインポートし、components要素内に使用するコンポーネント名を記載します。</p>
-<p>その後templateタグ内で、呼び出すコンポーネント名をそのままタグとして記載してあげれば、その場所に子コンポーネントが挿入されます。</p>
-</li>
-</ol>
-<h1 id="ルーティングの説明"><a name="ルーティングの説明" class="plugin-anchor" href="#ルーティングの説明"><i class="fa fa-link" aria-hidden="true"></i></a>ルーティングの説明</h1>
+<p> 画面上部にヘッダーが実装できました。</p>
+<p>  <img src="img/component2.jpg" alt="gras"></p>
+<p>  vueファイルは主に</p>
+<p>  ・templateタグ：html要素を記述する</p>
+<p>  ・scriptタグ：javascriptの処理を記述する</p>
+<p>  ・styleタグ：cssを記述する</p>
+<p>  の三つのタグからなります。</p>
+<p>  これらを合わせて一つのコンポーネントとして作成し、</p>
+<p>  それら組み合わせて1つのページを作るのがVue.jsの大枠の考え方です。</p>
+<p>  コンポーネントを呼び出すにはまずscriptタグ内で呼び出すコンポーネントのvueファイルをインポートし、components要素内に使用するコンポーネント名を記載します。</p>
+<p>  その後templateタグ内で、呼び出すコンポーネント名をそのままタグとして記載してあげれば、その場所に子コンポーネントが挿入されます。</p>
+<h2 id="補足:ルーティングの説明">2. 補足:ルーティングの説明</h2>
 <p>  app.vueの以下の部分(Vue Router)</p>
 <pre><code class="lang-javascript">  &lt;div id=<span class="hljs-string">&quot;app&quot;</span>&gt;
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">router-view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;appView&quot;</span>/&gt;</span></span>
@@ -392,7 +405,9 @@ Vue.use(VueRouter)
 </code></pre>
 <p>今回の場合は上記記述によって、ヘッダーは常に共通のものが表示、URLが変更されると</p>
 <p>「router-view」の内容がそのURLに設定されたページを表示してくれます。</p>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#ルーティングの説明">ルーティングの説明</a></p><li><a href="#当画面に関連するソースファイル">1. 当画面に関連するソースファイル</a></li></ul></div><a href="#当画面に関連するソースファイル" id="goTop"><i class="fa fa-arrow-up"></i></a>
+<hr>
+<p>次の手順では、ヘッダー内の修正を行っていきます！</p>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#2_src%5CApp_vueの修正">2.src\App.vueの修正</a></p><li><a href="#ヘッダーをインポートして画面に配置しよう。">1. ヘッダーをインポートして画面に配置しよう。</a></li><li><a href="#補足:ルーティングの説明">2. 補足:ルーティングの説明</a></li></ul></div><a href="#ヘッダーをインポートして画面に配置しよう。" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -435,7 +450,7 @@ Vue.use(VueRouter)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"アプリケーションコード修正(App.vue)","level":"1.4","depth":1,"next":{"title":"アプリケーションコード修正(ヘッダー)","level":"1.5","depth":1,"path":"header_readme.md","ref":"header_readme.md","articles":[]},"previous":{"title":"環境構築 2","level":"1.3","depth":1,"path":"create_env_no2.md","ref":"create_env_no2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"component_readme.md","mtime":"2022-04-13T11:57:29.688Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-04-13T12:39:50.928Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"アプリケーションコード修正(App.vue)","level":"1.4","depth":1,"next":{"title":"アプリケーションコード修正(ヘッダー)","level":"1.5","depth":1,"path":"header_readme.md","ref":"header_readme.md","articles":[]},"previous":{"title":"環境構築 2","level":"1.3","depth":1,"path":"create_env_no2.md","ref":"create_env_no2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"component_readme.md","mtime":"2022-04-21T11:23:20.948Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-05-09T09:44:40.771Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

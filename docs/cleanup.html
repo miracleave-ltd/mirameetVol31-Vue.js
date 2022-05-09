@@ -77,7 +77,7 @@
 
     
     
-    <link rel="prev" href="cart.html" />
+    <link rel="prev" href="cart_answer.html" />
     
 
     </head>
@@ -210,7 +210,20 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.9" data-path="cleanup.html">
+        <li class="chapter " data-level="1.9" data-path="cart_answer.html">
+            
+                <a href="cart_answer.html">
+            
+                    
+                    アプリケーションコード修正(カート画面) 回答編
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.10" data-path="cleanup.html">
             
                 <a href="cleanup.html">
             
@@ -270,48 +283,48 @@
                                 
                                 <h1 id="local環境のCleanUp"><a name="local環境のcleanup" class="plugin-anchor" href="#local環境のcleanup"><i class="fa fa-link" aria-hidden="true"></i></a>local環境のCleanUp</h1>
 <p>今回のハンズオンで使用した開発環境の削除を行います。</p>
+<p><img src="img/環境削除.png" alt="gras"></p>
 <ol>
-<li>コンテナの停止<br>以下コマンドでDockerコンテナを停止します。<pre><code>$ docker-compose down
-</code></pre>コンテナが停止しているか確認します。
-```
-$ docker-compose ps
-Name   Command   State   Ports</li>
-</ol>
-<hr>
-<pre><code>
-2. イメージの削除
-</code></pre><p>$ docker images<br>REPOSITORY                                                                   TAG                                                     IMAGE ID<br>  CREATED         SIZE
+<li><p>コンテナの停止<br>以下コマンドでDockerコンテナを停止します。</p>
+<pre><code>$ docker-compose down
+</code></pre><p>コンテナが停止しているか確認します。</p>
+<pre><code>$ docker-compose ps
+Name   Command   State   Ports
+------------------------------
+</code></pre></li>
+<li><p>イメージの削除</p>
+<pre><code>$ docker images                                                                                                                                   
+REPOSITORY                                                                   TAG                                                     IMAGE ID     
+CREATED         SIZE
 mirameetvol29_server                                                         latest                                                  ba2bac2d2844 
-  4 days ago      197MB
+4 days ago      197MB
 mirameetvol29_client                                                         latest                                                  05b82c10dc6e 
-  6 days ago      111MB</p>
-<pre><code>上記で確認できたIMAGE IDを利用して、ビルドされたイメージを削除します。
-</code></pre><p>docker rmi -f [IMAGE ID]</p>
-<pre><code>次のようなメッセージが確認できたら、イメージが正常に削除出来ています。
-</code></pre><p>Untagged: meetup_web...</p>
-<pre><code>
-3. フォルダの削除  
-最後にフォルダを削除します。  
-
-3.1. Macの場合
-</code></pre><h1 id="一つ上の階層に移動"><a name="一つ上の階層に移動" class="plugin-anchor" href="#一つ上の階層に移動"><i class="fa fa-link" aria-hidden="true"></i></a>一つ上の階層に移動</h1>
-<p>cd ../</p>
-<h1 id="xxxxxxxxxxxフォルダが存在しているかを確認"><a name="xxxxxxxxxxxフォルダが存在しているかを確認" class="plugin-anchor" href="#xxxxxxxxxxxフォルダが存在しているかを確認"><i class="fa fa-link" aria-hidden="true"></i></a>xxxxxxxxxxxフォルダが存在しているかを確認</h1>
-<p>ls</p>
-<h1 id="xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除"><a name="xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除" class="plugin-anchor" href="#xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除"><i class="fa fa-link" aria-hidden="true"></i></a>xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除</h1>
-<p>rm -rf xxxxxxxxx</p>
-<pre><code>
-3.2. Windowsの場合
-</code></pre><h1 id="一つ上の階層に移動"><a name="一つ上の階層に移動" class="plugin-anchor" href="#一つ上の階層に移動"><i class="fa fa-link" aria-hidden="true"></i></a>一つ上の階層に移動</h1>
-<p>cd ../</p>
-<h1 id="xxxxxxxxxxxフォルダが存在しているかを確認"><a name="xxxxxxxxxxxフォルダが存在しているかを確認" class="plugin-anchor" href="#xxxxxxxxxxxフォルダが存在しているかを確認"><i class="fa fa-link" aria-hidden="true"></i></a>xxxxxxxxxxxフォルダが存在しているかを確認</h1>
-<p>dir</p>
-<h1 id="xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除"><a name="xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除" class="plugin-anchor" href="#xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除"><i class="fa fa-link" aria-hidden="true"></i></a>xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除</h1>
-<p>rd /s /q xxxxxxxxxx</p>
-<h1 id="PowerShellをご使用の方はこちらのコマンドをご使用下さい"><a name="powershellをご使用の方はこちらのコマンドをご使用下さい" class="plugin-anchor" href="#powershellをご使用の方はこちらのコマンドをご使用下さい"><i class="fa fa-link" aria-hidden="true"></i></a>PowerShellをご使用の方はこちらのコマンドをご使用下さい</h1>
-<p>Remove-Item xxxxxxxxxx -Recurse -Force
-```</p>
-<p>以上。</p>
+6 days ago      111MB
+</code></pre><p>上記で確認できたIMAGE IDを利用して、ビルドされたイメージを削除します。</p>
+<pre><code>docker rmi -f [IMAGE ID]
+</code></pre><p>次のようなメッセージが確認できたら、イメージが正常に削除出来ています。</p>
+<pre><code>Untagged: meetup_web...
+</code></pre></li>
+<li><p>フォルダの削除<br>最後にフォルダを削除します。  </p>
+</li>
+</ol>
+<p>3.1. Macの場合  </p>
+<pre><code># 一つ上の階層に移動
+cd ../
+# xxxxxxxxxxxフォルダが存在しているかを確認
+ls
+# xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除
+rm -rf xxxxxxxxx
+</code></pre><p>3.2. Windowsの場合  </p>
+<pre><code># 一つ上の階層に移動
+cd ../
+# xxxxxxxxxxxフォルダが存在しているかを確認
+dir
+# xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除
+rd /s /q xxxxxxxxxx
+# PowerShellをご使用の方はこちらのコマンドをご使用下さい
+Remove-Item xxxxxxxxxx -Recurse -Force
+</code></pre><p>以上で本日のハンズオンは終了となります。皆様お疲れ様でした！</p>
 
                                 
                                 </section>
@@ -339,7 +352,7 @@ mirameetvol29_client                                                         lat
 
             
                 
-                <a href="cart.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: アプリケーションコード修正(カート画面)">
+                <a href="cart_answer.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: アプリケーションコード修正(カート画面) 回答編">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -351,7 +364,7 @@ mirameetvol29_client                                                         lat
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"local環境のCleanUp","level":"1.9","depth":1,"previous":{"title":"アプリケーションコード修正(カート画面)","level":"1.8","depth":1,"path":"cart.md","ref":"cart.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"cleanup.md","mtime":"2022-04-13T11:57:29.686Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-04-13T12:39:50.928Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"local環境のCleanUp","level":"1.10","depth":1,"previous":{"title":"アプリケーションコード修正(カート画面) 回答編","level":"1.9","depth":1,"path":"cart_answer.md","ref":"cart_answer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"cleanup.md","mtime":"2022-05-09T07:43:41.082Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-05-09T09:44:40.771Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

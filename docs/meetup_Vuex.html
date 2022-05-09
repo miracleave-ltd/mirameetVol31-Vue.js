@@ -212,7 +212,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9" data-path="cleanup.html">
+        <li class="chapter " data-level="1.9" data-path="cart_answer.html">
+            
+                <a href="cart_answer.html">
+            
+                    
+                    アプリケーションコード修正(カート画面) 回答編
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="cleanup.html">
             
                 <a href="cleanup.html">
             
@@ -270,20 +283,24 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="アプリケーションコード修正(商品情報詳細画面)"><a name="アプリケーションコード修正商品情報詳細画面" class="plugin-anchor" href="#アプリケーションコード修正商品情報詳細画面"><i class="fa fa-link" aria-hidden="true"></i></a>アプリケーションコード修正(商品情報詳細画面)</h1>
-<p><img src="img/overview.png" alt="gras"></p>
-<p>続いては商品詳細画面です。</p>
-<p>ここでは商品検索画面で選択した商品の詳細情報を確認できるるのと商品をカートに入れる機能がある画面です。</p>
-<p>この画面でポイントとなるのはカートに入れる機能です。これはVuexというライブラリを使用して、商品をカートに入れます。</p>
-<p>&quot;Vuex&quot;とはVue.js アプリケーションのための 状態管理パターン + ライブラリです。</p>
-<p><a href="https://vuex.vuejs.org/ja/" target="_blank">https://vuex.vuejs.org/ja/</a> (Vue.js公式サイトより)</p>
+                                <h1 id="商品をカートに入れる機能を実装する(Vuex)"><a name="商品をカートに入れる機能を実装するvuex" class="plugin-anchor" href="#商品をカートに入れる機能を実装するvuex"><i class="fa fa-link" aria-hidden="true"></i></a>商品をカートに入れる機能を実装する(Vuex)</h1>
 <h2 id="修正対象のソース">1. 修正対象のソース</h2>
 <ul>
-<li>client/ecsite/src/store/index.js</li>
-<li>client/ecsite/src/views/detailView.vue</li>
+<li>src/store/index.js</li>
+<li>src/views/detailView.vue</li>
 </ul>
-<h2 id="index_jsの修正">2. index.jsの修正</h2>
-<p>VuexをVue.jsで使用する際は以Vue.use(Vuex)で宣言し、Storeを定義します。</p>
+<p>続いては商品詳細画面です。</p>
+<p>この画面は、検索画面で選択した商品の詳細情報が掲載されています。またこの画面でポイントとなるのはカートに入れる機能です。</p>
+<p><img src="img/flow.png" alt="gras"></p>
+<h2 id="VuexのStore機能修正">2. VuexのStore機能修正</h2>
+<ul>
+<li>src/store/index.js←今回修正する箇所</li>
+</ul>
+<p>今回はVuexというライブラリを使用して、商品をカートに入れます。
+&quot;Vuex&quot;とはVue.js アプリケーションのための 状態管理パターン + ライブラリです。</p>
+<p><a href="https://vuex.vuejs.org/ja/" target="_blank">https://vuex.vuejs.org/ja/</a> (Vue.js公式サイトより)</p>
+<p>VuexをVue.jsで使用する際はVue.use(Vuex)で宣言し、Storeを定義します。
+storeとは基本的にアプリケーションの状態（state）を保持するコンテナのようなものです。</p>
 <p>今回は既にstoreを宣言している状態で始めます。</p>
 <p>storeの宣言で、state・getters・mutations・actionsという項目がありますが、これらはStoreが保持するデータ項目や、Store上のデータを他のソースから操作するための関数を定義する項目です。</p>
 <ul>
@@ -304,7 +321,7 @@
 <p>④mutationがstateを変更する（Mutate）</p>
 <p>⑤更新（Mutate）されたstateを、Component側に描画する（Render）</p>
 <p>今回actionsは使用しませんが、Vuexの基本的な情報なので覚えておきましょう。</p>
-<p>では、実際に修正してましょう。今回修正する箇所はmutationの箇所です。ここの処理がカートを入れる機能(stateに情報を保持)となります。</p>
+<p>では、実際に修正してましょう。今回修正する箇所は&quot;src/store/index.js&quot;の&quot;mutation&quot;の箇所です。ここの処理がカートを入れる機能(stateに情報を保持)となります。</p>
 <p>変更前</p>
 <pre><code>  mutations: {
     // 商品削除
@@ -315,12 +332,6 @@
     // 商品リスト初期化
     clearItem (state) {
       state.itemList = []
-    },
-    setProductName (state, productName) {
-      state.productName = productName
-    },
-    setQuanitiy (state, quanitiy) {
-      state.quanitiy = quanitiy
     }
   }
 </code></pre><p>変更後</p>
@@ -338,18 +349,15 @@
     // 商品リスト初期化
     clearItem (state) {
       state.itemList = []
-    },
-    setProductName (state, productName) {
-      state.productName = productName
-    },
-    setQuanitiy (state, quanitiy) {
-      state.quanitiy = quanitiy
     }
   }
-</code></pre><p>mutationは上記記載の通りに、stateの値(今回の場合は、商品名・商品説明・値段・商品数・商品画像)を更新することができます。</p>
+</code></pre><p>mutationは上記記載の通りに、stateの値(今回の場合は1件分の商品情報をリストに追加しています)を更新することができます。</p>
 <p>pushItemはカートボタンをクリック時に使用し、これで商品情報を保持することができます。これはdetailView.vueでも使用するので、覚えておきましょう。</p>
 <p>他にも商品削除のdeleteItemなどありますが、こちらは次の章のカート画面上で使用します。</p>
-<h2 id="detailView_vueの修正">3. detailView.vueの修正</h2>
+<h2 id="カートに入れる機能修正">3. カートに入れる機能修正</h2>
+<ul>
+<li>src/views/detailView.vue←今回修正するファイル</li>
+</ul>
 <p>ここでは、商品検索で選択した商品情報をカートに入れる処理を追加します。</p>
 <p>methodの中にあるadditemを下記のように修正してみましょう。</p>
 <p>変更前</p>
@@ -400,7 +408,7 @@
 <p>次の章では選択した個数と商品は本当にカートに入っているか確認してみましょう。</p>
 <p>また商品を削除するのにもVuexが使用されております。
 mutationsに既にあったdeleteItemとclearItemです。deleteItemはカートに入った商品を削除する時に、clearItemは商品を注文した時に使用します。</p>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#アプリケーションコード修正(商品情報詳細画面)">アプリケーションコード修正(商品情報詳細画面)</a></p><li><a href="#修正対象のソース">1. 修正対象のソース</a></li><li><a href="#index_jsの修正">2. index.jsの修正</a></li><li><a href="#detailView_vueの修正">3. detailView.vueの修正</a></li><li><a href="#動作確認">4. 動作確認</a></li></ul></div><a href="#修正対象のソース" id="goTop"><i class="fa fa-arrow-up"></i></a>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#商品をカートに入れる機能を実装する(Vuex)">商品をカートに入れる機能を実装する(Vuex)</a></p><li><a href="#修正対象のソース">1. 修正対象のソース</a></li><li><a href="#VuexのStore機能修正">2. VuexのStore機能修正</a></li><li><a href="#カートに入れる機能修正">3. カートに入れる機能修正</a></li><li><a href="#動作確認">4. 動作確認</a></li></ul></div><a href="#修正対象のソース" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -443,7 +451,7 @@ mutationsに既にあったdeleteItemとclearItemです。deleteItemはカート
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"アプリケーションコード修正(商品情報詳細画面)","level":"1.7","depth":1,"next":{"title":"アプリケーションコード修正(カート画面)","level":"1.8","depth":1,"path":"cart.md","ref":"cart.md","articles":[]},"previous":{"title":"アプリケーションコード修正(商品検索画面)","level":"1.6","depth":1,"path":"itemSearch_readme.md","ref":"itemSearch_readme.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"meetup_Vuex.md","mtime":"2022-04-13T11:57:29.707Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-04-13T12:39:50.928Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"アプリケーションコード修正(商品情報詳細画面)","level":"1.7","depth":1,"next":{"title":"アプリケーションコード修正(カート画面)","level":"1.8","depth":1,"path":"cart.md","ref":"cart.md","articles":[]},"previous":{"title":"アプリケーションコード修正(商品検索画面)","level":"1.6","depth":1,"path":"itemSearch_readme.md","ref":"itemSearch_readme.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"meetup_Vuex.md","mtime":"2022-05-09T07:43:41.099Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-05-09T09:44:40.771Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
