@@ -13,44 +13,51 @@ Vue.jsの機能を把握していないと難しいですよね？早速です�
 mounted と handleDelete method から合計値取得処理を削除して、getTotal method を computed内に書き換えます。
 
 * 修正前
+
+mounted
 ```javascript
     mounted: function () {
         // DOMのマウント終了後の処理
         /** 合計値取得処理 */
         this.totalPrice = this.getTotal()
     },
-
-    methods: {
-        ...
-
-        /**
-         * 削除ボタン押下
-         */
-        handleDelete (index) {
-            // storeから該当商品を削除
-            this.$store.commit('deleteItem', index)
-            /** 合計値取得処理 */
-            this.totalPrice = this.getTotal()
-        },
-        /**
-         *合計値取得
-        */
-        getTotal () {
-            let price = 0
-            this.getItemList.forEach(element => {
-                price += element.price * element.quantity
-            })
-            return price
-        },
-    }
 ```
 
-* 修正後
+methods
+```javascript
+  methods: {
+    getPrice (price, quantity) {
+      return Number(price * quantity)
+    },
+    /**
+     * 削除ボタン押下
+     */
+    handleDelete (index) {
+      // storeから該当商品を削除
+      this.$store.commit('deleteItem', index)
+      /** 合計値取得処理 */
+      this.totalPrice = this.getTotal()
+    },
+  }
+```
+computed
+```javascript
+    computed: {
+        getItemList () {
+          return this.$store.getters.getItemList
+        }
+    },
+```
+
+* 修正後  
+mounted
 ```javascript
     mounted: function () {
         // DOMのマウント終了後の処理
     },
-
+```
+methods
+```javascript
     methods: {
         /**
          * 削除ボタン押下
@@ -59,15 +66,19 @@ mounted と handleDelete method から合計値取得処理を削除して、get
             // storeから該当商品を削除
             this.$store.commit('deleteItem', index)
         },
-    },
-
+```
+computed
+```javascript
     computed: {
+        getItemList () {
+          return this.$store.getters.getItemList
+        },
         getTotal () {
-        let price = 0
-        this.getItemList.forEach(element => {
-            price += element.price * element.quantity
-        })
-        return price
+        　　let price = 0
+        　　this.getItemList.forEach(element => {
+            　　price += element.price * element.quantity
+        　　})
+        　　return price
         }
     },
 ```
