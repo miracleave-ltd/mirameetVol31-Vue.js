@@ -67,6 +67,8 @@ storeの宣言で、state・getters・mutations・actionsという項目があ�
 ```
 
 変更後
+
+18行目のmutationsの下に商品追加のソースを追加してください。
 ```
   mutations: {
     // 商品追加
@@ -117,6 +119,8 @@ addItem () {
 }
 ```
 変更後
+
+104行目の addItemの下に商品情報を保持するためのソースを追加してください。
 ```
 addItem () {
   // storeに保存後ダイアログ出して検索画面に戻る
