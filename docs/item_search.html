@@ -3,7 +3,7 @@
 <html lang="ja" >
     <head>
         <meta charset="UTF-8">
-        <title>local環境のCleanUp · mirameet</title>
+        <title>アプリケーションコード修正(商品検索画面) · mirameet</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.1">
@@ -76,8 +76,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="item_detail.html" />
     
-    <link rel="prev" href="cart_answer.html" />
+    
+    <link rel="prev" href="header.html" />
     
 
     </head>
@@ -171,7 +173,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6" data-path="item_search.html">
+        <li class="chapter active" data-level="1.6" data-path="item_search.html">
             
                 <a href="item_search.html">
             
@@ -223,7 +225,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.10" data-path="cleanup.html">
+        <li class="chapter " data-level="1.10" data-path="cleanup.html">
             
                 <a href="cleanup.html">
             
@@ -266,7 +268,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >local環境のCleanUp</a>
+        <a href="." >アプリケーションコード修正(商品検索画面)</a>
     </h1>
 </div>
 
@@ -281,50 +283,56 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="local環境のCleanUp"><a name="local環境のcleanup" class="plugin-anchor" href="#local環境のcleanup"><i class="fa fa-link" aria-hidden="true"></i></a>local環境のCleanUp</h1>
-<p>今回のハンズオンで使用した開発環境の削除を行います。</p>
-<p><img src="img/環境削除.png" alt="gras"></p>
+                                <h1 id="アプリケーションコード修正(商品検索画面)"><a name="アプリケーションコード修正商品検索画面" class="plugin-anchor" href="#アプリケーションコード修正商品検索画面"><i class="fa fa-link" aria-hidden="true"></i></a>アプリケーションコード修正(商品検索画面)</h1>
+<p>当手順では、以下の赤枠部分を実施します。
+  <img src="img/handson_itemSearch.png" alt="gras"></p>
+<h1 id="1_当画面に関連するソースファイル"><a name="1当画面に関連するソースファイル" class="plugin-anchor" href="#1当画面に関連するソースファイル"><i class="fa fa-link" aria-hidden="true"></i></a>1.当画面に関連するソースファイル</h1>
+<p>  src\views\itemSearch.vue←修正対象</p>
+<p>  修正する前に一度、状況を確認してみましょう。</p>
+<p>  <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a></p>
+<p>  画面としては、「商品検索画面」と表示されるのみで、商品一覧は検索されていないことがわかります。</p>
+<p>  <img src="img/itemSearch1.jpg" alt="gras"></p>
+<p>  確認できたところで、あらためて修正をすすめていきましょう！</p>
+<h1 id="created_を使って画面初期表示時の処理を実装しよう。"><a name="created-を使って画面初期表示時の処理を実装しよう。" class="plugin-anchor" href="#created-を使って画面初期表示時の処理を実装しよう。"><i class="fa fa-link" aria-hidden="true"></i></a>created を使って画面初期表示時の処理を実装しよう。</h1>
 <ol>
-<li><p>コンテナの停止<br>以下コマンドでDockerコンテナを停止します。</p>
-<pre><code>$ docker-compose down
-</code></pre><p>コンテナが停止しているか確認します。</p>
-<pre><code>$ docker-compose ps
-Name   Command   State   Ports
-------------------------------
-</code></pre></li>
-<li><p>イメージの削除</p>
-<pre><code>$ docker images                                                                                                                                   
-REPOSITORY                                                                   TAG                                                     IMAGE ID     
-CREATED         SIZE
-mirameetvol29_server                                                         latest                                                  ba2bac2d2844 
-4 days ago      197MB
-mirameetvol29_client                                                         latest                                                  05b82c10dc6e 
-6 days ago      111MB
-</code></pre><p>上記で確認できたIMAGE IDを利用して、ビルドされたイメージを削除します。</p>
-<pre><code>docker rmi -f [IMAGE ID]
-</code></pre><p>次のようなメッセージが確認できたら、イメージが正常に削除出来ています。</p>
-<pre><code>Untagged: meetup_web...
-</code></pre></li>
-<li><p>フォルダの削除<br>最後にフォルダを削除します。  </p>
+<li><p>Ctrl+P(MACの場合Command＋P) を押下してファイル検索を表示し、「itemSearch.vue」を開く</p>
+</li>
+<li><p>Ctrl ＋ F(MACの場合Command+F) で検索欄を表示し、「created」内に初期表示時の処理を記述する。<br>今回は、クエリパラメータを受け取って検索処理を行う「search()」を初期表示時に実行するようにしてみます。
+created を以下のように修正してください</p>
 </li>
 </ol>
-<p>3.1. Macの場合  </p>
-<pre><code># 一つ上の階層に移動
-cd ../
-# xxxxxxxxxxxフォルダが存在しているかを確認
-ls
-# xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除
-rm -rf xxxxxxxxx
-</code></pre><p>3.2. Windowsの場合  </p>
-<pre><code># 一つ上の階層に移動
-cd ../
-# xxxxxxxxxxxフォルダが存在しているかを確認
-dir
-# xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除
-rd /s /q xxxxxxxxxx
-# PowerShellをご使用の方はこちらのコマンドをご使用下さい
-Remove-Item xxxxxxxxxx -Recurse -Force
-</code></pre><p>以上で本日のハンズオンは終了となります。皆様お疲れ様でした！</p>
+<p>変更前</p>
+<pre><code class="lang-javascript">  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// 初期表示時処理</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;created&apos;</span>)
+  },
+</code></pre>
+<p>変更後</p>
+<pre><code class="lang-javascript">  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// 初期表示時処理</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;created&apos;</span>)
+    <span class="hljs-built_in">this</span>.search()
+  },
+</code></pre>
+<p>   初期表示時にsearch()メソッドを呼び出すことによって、画面初期表示時に商品一覧の検索処理が行われるようになりました！</p>
+<p>  <img src="img/itemSearch2.jpg" alt="gras"></p>
+<p>  大分類、中分類を選択したり、検索ワードを入れて検索ボタンを押下すると、絞り込まれたリストが表示されます。</p>
+<h1 id="created_の処理についておさらい"><a name="created-の処理についておさらい" class="plugin-anchor" href="#created-の処理についておさらい"><i class="fa fa-link" aria-hidden="true"></i></a>created の処理についておさらい</h1>
+<p>  createdは画面初期表示時に走る処理です。正確に言うとインスタンスが生成され､データが初期化された後に実行されます。</p>
+<p>  初期表示時のデータ初期化後に実施したい処理がある場合はこの中に処理をかいていくことで実現することができます。</p>
+<p>  今回の場合は画面が初期表示される際に検索処理を行いたかったため、searchメソッドを呼び出すように変更しました。</p>
+<p>  createdは実際の開発でもよく使うライフサイクルフックの一つですので、ぜひ覚えておいてください！</p>
+<h1 id="mountedとの違い"><a name="mountedとの違い" class="plugin-anchor" href="#mountedとの違い"><i class="fa fa-link" aria-hidden="true"></i></a>mountedとの違い</h1>
+<p>  createdとmountedは共に画面初期表示時に走る処理です。では何が違うのでしょうか。</p>
+<p>  mountedは、インスタンスが DOM 要素にマウントされた後に実行される処理です。</p>
+<p>  getElementById等を使ってDOM要素にアクセスをしたい場合は、mountedに書くことが望ましいです。</p>
+<p>  createdの時にgetElementById(&apos;hoge&apos;)でDOMの要素を取得しようとしても取得することはできません。</p>
+<p>  mountedが実行されるタイミングではDOMの作成が完了しているのでDOMの要素が取得できるため</p>
+<p>  getElementByIdだけではなくDOMに対してアクセスを行う「jQuery」もmounted時点で使用可能となります。</p>
+<p>  mountedも、createdと並んでよく使うライフサイクルフックです。</p>
+<p>  初期表示処理はmountedでまとめて行う。という現場も多いです。(厳密に言うと、上記のように使い分けをすべきではあります。)</p>
+<hr>
+<p>  次の画面では、商品詳細画面の修正を行います！検索結果一覧表示されている商品画像の何れかをクリックし、商品詳細画面へ移動しましょう！</p>
 
                                 
                                 </section>
@@ -352,10 +360,14 @@ Remove-Item xxxxxxxxxx -Recurse -Force
 
             
                 
-                <a href="cart_answer.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: アプリケーションコード修正(カート画面) 回答編">
+                <a href="header.html" class="navigation navigation-prev " aria-label="Previous page: アプリケーションコード修正(ヘッダー)">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="item_detail.html" class="navigation navigation-next " aria-label="Next page: アプリケーションコード修正(商品情報詳細画面)">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -364,7 +376,7 @@ Remove-Item xxxxxxxxxx -Recurse -Force
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"local環境のCleanUp","level":"1.10","depth":1,"previous":{"title":"アプリケーションコード修正(カート画面) 回答編","level":"1.9","depth":1,"path":"cart_answer.md","ref":"cart_answer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"cleanup.md","mtime":"2022-05-10T11:26:17.398Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-05-10T12:01:42.984Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"アプリケーションコード修正(商品検索画面)","level":"1.6","depth":1,"next":{"title":"アプリケーションコード修正(商品情報詳細画面)","level":"1.7","depth":1,"path":"item_detail.md","ref":"item_detail.md","articles":[]},"previous":{"title":"アプリケーションコード修正(ヘッダー)","level":"1.5","depth":1,"path":"header.md","ref":"header.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"item_search.md","mtime":"2022-05-10T11:26:17.434Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-05-10T12:01:42.984Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
