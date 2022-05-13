@@ -7,10 +7,10 @@
 
 それでは答え合わせしてみましょう！  
 今回使用するVue.jsの機能は「computed」になります！皆さん予想はどうでしたでしょうか？  
-Vue.jsの機能を把握していないと難しいですよね？早速ですが「computed」を使って画面の修正を行ってみましょう！
+早速ですが「computed」を使って画面の修正を行ってみましょう！
 
-## Vueの機能を使ってソースコードの修正 
-mounted と handleDelete method から合計値取得処理を削除して、getTotal method を computed内に書き換えます。
+## ソースコードの修正 
+mounted と handleDelete から合計値取得処理を削除して、getTotal method を computed内に書き換えます。
 
 * 修正前
 
@@ -25,7 +25,6 @@ mounted
 
 methods
 ```javascript
-  methods: {
     getPrice (price, quantity) {
       return Number(price * quantity)
     },
@@ -38,7 +37,16 @@ methods
       /** 合計値取得処理 */
       this.totalPrice = this.getTotal()
     },
-  }
+    /**
+     *合計値取得
+    */
+    getTotal () {
+      let price = 0
+      this.getItemList.forEach(element => {
+        price += element.price * element.quantity
+      })
+      return price
+    },
 ```
 computed
 ```javascript
@@ -50,24 +58,31 @@ computed
 ```
 
 * 修正後  
-mounted
+mounted  
+this.totalPrice = this.getTotal()を削除
 ```javascript
     mounted: function () {
         // DOMのマウント終了後の処理
     },
 ```
-methods
+methods  
+getTotal()メソッドを削除。
 ```javascript
-    methods: {
-        /**
-         * 削除ボタン押下
-         */
-        handleDelete (index) {
-            // storeから該当商品を削除
-            this.$store.commit('deleteItem', index)
-        },
+    getPrice (price, quantity) {
+      return Number(price * quantity)
+    },
+    /**
+     * 削除ボタン押下
+     */
+    handleDelete (index) {
+      // storeから該当商品を削除
+      this.$store.commit('deleteItem', index)
+      /** 合計値取得処理 */
+      this.totalPrice = this.getTotal()
+    },
 ```
-computed
+computed  
+getTotal()処理を追加
 ```javascript
     computed: {
         getItemList () {
@@ -83,7 +98,8 @@ computed
     },
 ```
 
-dataに定義していた totalPrice も削除。templateタグ内で合計額表示している箇所を computed に定義した getTotal に書き換えます。
+templateタグ内で合計額表示している箇所の「totalPrice」を  
+computed に定義した 「getTotal」 に書き換えます。
 
 * 修正前
 
@@ -126,5 +142,9 @@ dataに定義していた totalPrice も削除。templateタグ内で合計額�
 ```
 ## 修正内容の確認  
 ブラウザをリロードしてみて表示されている内容に問題がないか確認してみましょう。  
-ソースコード上ではVueの機能を使うことでロジックがまとまり、保守の観点でも修正箇所が減って可読性も上がりました。  
-画面上では修正前と同じく商品の削除ボタンが押下されたたびに合計額が動的に変化するのが確認できると思います。
+機能としては、修正前と同じく、商品をカートから削除した際に合計額が再計算されます。  
+![gras](img/cart_handson_1.jpg)  
+![gras](img/cart_handson_2.jpg)  
+ソースコード上では色々な場所から同じ処理を呼び出す事がなくなり、保守の観点でも修正箇所が減って可読性も上がりました。  
+このように、プログラムの外部から見た動作を変えずにソースコードの内部構造を整理することを「リファクタリング」と言います。  
+実務においてもリファクタリングを行う場面は多々あると思います。ぜひ覚えておいてください！  

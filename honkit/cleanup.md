@@ -55,8 +55,6 @@ cd ../
 # xxxxxxxxxxxフォルダが存在しているかを確認
 dir
 # xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除
-rd /s /q xxxxxxxxxx
-# PowerShellをご使用の方はこちらのコマンドをご使用下さい
 Remove-Item xxxxxxxxxx -Recurse -Force
 ```
 
