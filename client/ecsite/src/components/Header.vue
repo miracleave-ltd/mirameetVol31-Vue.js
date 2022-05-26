@@ -85,7 +85,6 @@ export default {
       { code: '09', text: 'エアコン', parentCode: '03' }
 
     ]
-    console.log('headerMounted')
   },
   methods: {
     // メソッド(毎回呼び出す度に処理を実行)
@@ -93,12 +92,10 @@ export default {
      * ロゴアイコンクリック時ホームへ飛ばす
      */
     moveHome () {
-      console.log('moveHome!')
       this.$router.push({ path: '/' })
       this.$router.go(0)
     },
     cart () {
-      console.log('moveCart!')
       this.$router.push({ path: '/cart' })
     },
     /**
@@ -110,7 +107,6 @@ export default {
         this.$router.push({ path: '/', query: { searchWord: this.searchWord, lergeCategoryCode: this.lergeCategoryCode, mediumCategoryCode: this.mediumCategoryCode } })
         this.$router.go(0)
       } catch (error) {
-        console.log('error', error)
       }
     }
   }

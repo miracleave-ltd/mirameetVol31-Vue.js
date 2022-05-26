@@ -52,19 +52,15 @@ export default {
   },
   created: function () {
     // 初期表示時処理
-    console.log('created')
   },
   mounted: function () {
     // DOMのマウント終了後の処理
-    console.log('mounted')
   },
   updated () {
     // DOMが再レンダリングされる際に走る
-    console.log('updated!')
   },
   destroyed () {
     // インスタンスが破壊される際に走る
-    console.log('destroyed!')
   },
   methods: {
     // メソッド(毎回呼び出す度に処理を実行)
