@@ -1,4 +1,4 @@
-# mirameet vol.31_エグゼコム　現場で役立つ実践Vue.js!～ECサイトを作成してみる～
+# mirameet vol.31_Vue.js　現場で役立つ実践Vue.js!～ECサイトを作成してみる～
 
 ## 事前準備
 - VSCodeインストール
