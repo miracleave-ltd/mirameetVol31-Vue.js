@@ -2,7 +2,7 @@
 
 今回のハンズオンで使用した開発環境の削除を行います。
 
-1. コンテナの停止  
+## コンテナの停止  
 以下コマンドでDockerコンテナを停止します。
 ```
 $ docker-compose down
@@ -14,7 +14,7 @@ Name   Command   State   Ports
 ------------------------------
 ```
 
-2. イメージの削除
+## イメージの削除
 ```
 $ docker images                                                                                                                                   
 REPOSITORY                                                                   TAG                                                     IMAGE ID     
@@ -33,10 +33,10 @@ docker rmi -f [IMAGE ID]
 Untagged: meetup_web...
 ```
 
-3. フォルダの削除  
+## フォルダの削除  
 最後にフォルダを削除します。  
 
-3.1. Macの場合  
+### Macの場合  
 ```
 # 一つ上の階層に移動
 cd ../
@@ -46,7 +46,7 @@ ls
 rm -rf xxxxxxxxx
 ```
 
-3.2. Windowsの場合  
+#### Windowsの場合  
 ```
 # 一つ上の階層に移動
 cd ../
@@ -58,4 +58,4 @@ rd /s /q xxxxxxxxxx
 Remove-Item xxxxxxxxxx -Recurse -Force
 ```
 
-以上。
+以上でハンズオンは終了です。お疲れ様でした！
