@@ -284,25 +284,26 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="環境構築_その2_Vue_アプリケーションをDocker環境で準備"><a name="環境構築-その2-vue-アプリケーションをdocker環境で準備" class="plugin-anchor" href="#環境構築-その2-vue-アプリケーションをdocker環境で準備"><i class="fa fa-link" aria-hidden="true"></i></a>環境構築 その2 Vue アプリケーションをDocker環境で準備</h1>
-<p>続いてVueアプリケーションの準備に移ります。  </p>
-<p><img src="img/環境構築.png" alt="gras"></p>
-<p>ecsiteディレクトリ直下をvscodeで開いていることを確認してください。vscodeが正常に動作しないことがあります。<br>以下がecsiteディレクトリになります。</p>
+<p>続いてVueアプリケーションの準備に移ります。 </p>
+<p><strong>ecsiteディレクトリ直下をvscodeで開いていることを確認してください。</strong><br><strong>vscodeが正常に動作しないことがあります。</strong>  </p>
+<p>以下がecsiteディレクトリになります。  </p>
 <pre><code>mirameetVol31.-main/client/ecsite
-</code></pre><h2 id="Dockerコンテナに入ってnpm_installを実行">1. Dockerコンテナに入ってnpm installを実行</h2>
-<p>Vueプロジェクトに必要なパッケージをインストールするためにまずは下記のコマンドでDockerコンテナに入ります。</p>
+</code></pre><h2 id="6__Dockerコンテナに入ってnpm_installを実行">1. 6. Dockerコンテナに入ってnpm installを実行</h2>
+<p>6-1.<br>Vueプロジェクトに必要なパッケージをインストールするためにまずは下記のコマンドでDockerコンテナに入ります。</p>
 <pre><code>docker-compose exec client sh
-</code></pre><p>Dockerコンテナ内に入ったらnpmでvue/cliをインストールします。<br>ターミナル上に /usr/src と表示されていればコンテナに入れています。</p>
+</code></pre><p>6-2.<br>Dockerコンテナ内に入ったらnpmでvue/cliをインストールします。 
+ターミナル上に /usr/src と表示されていればコンテナに入れています。  </p>
 <pre><code>npm install -g @vue/cli
-</code></pre><p>続いて、以下コマンドでnode_modulesフォルダ上に必要なパッケージ類がインストールされます。<br>(通信環境によってしばらく時間がかかります。)  </p>
+</code></pre><p>6-3.<br>続いて、以下コマンドでnode_modulesフォルダ上に必要なパッケージ類がインストールされます。<br>(通信環境によってしばらく時間がかかります。)  </p>
 <pre><code>npm install
-</code></pre><h2 id="Vueアプリケーションサーバーをたてる">2. Vueアプリケーションサーバーをたてる</h2>
-<p>npmでパッケージインストールが完了したら引き続きDocker内で<br>以下コマンドでVueアプリケーションを立てましょう。ビルドには少々時間がかかります。</p>
+</code></pre><h2 id="7__Vueアプリケーションサーバーをたてる">2. 7. Vueアプリケーションサーバーをたてる</h2>
+<p>7-1.<br>npmでパッケージインストールが完了したら引き続きDocker内で<br>以下コマンドでVueアプリケーションを立てましょう。ビルドには少々時間がかかります。</p>
 <pre><code>npm run serve
 </code></pre><p>以下の表示になったら起動完了です。
 <img src="img/terminal_done.jpg" alt="gras"></p>
-<h2 id="ブラウザから起動確認をしましょう。">3. ブラウザから起動確認をしましょう。</h2>
-<p>2 の実装が完了したら以下のURLでブラウザ上から起動の確認を行ってください。<br>url: <a href="http://localhost:8080" target="_blank">http://localhost:8080</a><br><img src="img/component1.jpg" alt="gras"></p>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#環境構築_その2_Vue_アプリケーションをDocker環境で準備">環境構築 その2 Vue アプリケーションをDocker環境で準備</a></p><li><a href="#Dockerコンテナに入ってnpm_installを実行">1. Dockerコンテナに入ってnpm installを実行</a></li><li><a href="#Vueアプリケーションサーバーをたてる">2. Vueアプリケーションサーバーをたてる</a></li><li><a href="#ブラウザから起動確認をしましょう。">3. ブラウザから起動確認をしましょう。</a></li></ul></div><a href="#Dockerコンテナに入ってnpm_installを実行" id="goTop"><i class="fa fa-arrow-up"></i></a>
+<h2 id="8__ブラウザから起動確認をしましょう。">3. 8. ブラウザから起動確認をしましょう。</h2>
+<p>8-1.<br>以下のURLでブラウザ上から起動の確認を行ってください。<br>url: <a href="http://localhost:8080" target="_blank">http://localhost:8080</a><br><img src="img/component1.jpg" alt="gras"></p>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#環境構築_その2_Vue_アプリケーションをDocker環境で準備">環境構築 その2 Vue アプリケーションをDocker環境で準備</a></p><li><a href="#6__Dockerコンテナに入ってnpm_installを実行">1. 6. Dockerコンテナに入ってnpm installを実行</a></li><li><a href="#7__Vueアプリケーションサーバーをたてる">2. 7. Vueアプリケーションサーバーをたてる</a></li><li><a href="#8__ブラウザから起動確認をしましょう。">3. 8. ブラウザから起動確認をしましょう。</a></li></ul></div><a href="#6__Dockerコンテナに入ってnpm_installを実行" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -345,7 +346,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"環境構築 2","level":"1.3","depth":1,"next":{"title":"コード修正(App.vue)","level":"1.4","depth":1,"path":"component.md","ref":"component.md","articles":[]},"previous":{"title":"環境構築 1","level":"1.2","depth":1,"path":"create_env_no1.md","ref":"create_env_no1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"create_env_no2.md","mtime":"2022-06-02T10:23:10.445Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-02T10:29:31.399Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"環境構築 2","level":"1.3","depth":1,"next":{"title":"コード修正(App.vue)","level":"1.4","depth":1,"path":"component.md","ref":"component.md","articles":[]},"previous":{"title":"環境構築 1","level":"1.2","depth":1,"path":"create_env_no1.md","ref":"create_env_no1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"create_env_no2.md","mtime":"2022-06-03T09:44:33.646Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-03T09:57:19.532Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

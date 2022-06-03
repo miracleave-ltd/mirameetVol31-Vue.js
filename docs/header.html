@@ -283,18 +283,23 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="アプリケーションコード修正(ヘッダー)"><a name="アプリケーションコード修正ヘッダー" class="plugin-anchor" href="#アプリケーションコード修正ヘッダー"><i class="fa fa-link" aria-hidden="true"></i></a>アプリケーションコード修正(ヘッダー)</h1>
+                                <h1 id="コード修正(ヘッダー)"><a name="コード修正ヘッダー" class="plugin-anchor" href="#コード修正ヘッダー"><i class="fa fa-link" aria-hidden="true"></i></a>コード修正(ヘッダー)</h1>
 <p>当手順では、以下の赤枠部分を実施します。
   <img src="img/handson_itemSearch.png" alt="gras"></p>
-<h1 id="1_当画面に関連するソースファイル"><a name="1当画面に関連するソースファイル" class="plugin-anchor" href="#1当画面に関連するソースファイル"><i class="fa fa-link" aria-hidden="true"></i></a>1.当画面に関連するソースファイル</h1>
-<p>  src\components\Header.vue←修正対象<br>  修正する前に一度、状況を確認してみましょう。<br>  <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a><br>  「大分類」から、何か選択した状態で「中分類」のリストをクリックしてみてください。<br>  <img src="img/mediumCategory1.jpg" alt="gras"><br>  特にフィルタリング処理は実装されておらず、大分類を変更しても中分類リストの選択肢一覧に変更がないことが分かったかと思います。  </p>
-<h1 id="2_computedのおさらい"><a name="2computedのおさらい" class="plugin-anchor" href="#2computedのおさらい"><i class="fa fa-link" aria-hidden="true"></i></a>2.computedのおさらい</h1>
-<p>  業務において、データに何かしらの処理を加えてから表示させたい。という場面があると思います。<br>  そんな時に使えるのがcomputedプロパティです。<br>  computedは一度計算後、同じ処理が呼び出された際も以前計算時にキャッシュされたデータを即時返すだけなので何度も同じ処理を行いません。<br>  キャッシュが削除され再度計算されるのは、依存するデータの値が更新されたときだけです。<br>  methodsは結果をキャッシュしないので、一度計算を行った場合でも、呼び出されるたびに再計算が行われます。</p>
-<h1 id="3_computedとwatchの違いのおさらい"><a name="3computedとwatchの違いのおさらい" class="plugin-anchor" href="#3computedとwatchの違いのおさらい"><i class="fa fa-link" aria-hidden="true"></i></a>3.computedとwatchの違いのおさらい</h1>
-<h2 id="watchって？">1. watchって？</h2>
-<p>  特定のデータまたは computed プロパティの状態を監視して、変化があったとき登録した処理を自動的に実行するものです。<br>  データの変更を監視して、それをトリガーに処理を行う必要がある時に使えます。<br>  具体的には<br>  ・computed プロパティでは処理できない非同期通信などの複雑な処理を行う場合<br>  ・処理の中で更新前と更新後の値を使う場合<br>  ・処理を実行しても、データは返さない場合<br>  上記にあたる場合はwatchを使って処理をすることが望ましいでしょう。  </p>
-<h1 id="4_src\components\Header_vueの修正"><a name="4srccomponentsheadervueの修正" class="plugin-anchor" href="#4srccomponentsheadervueの修正"><i class="fa fa-link" aria-hidden="true"></i></a>4.src\components\Header.vueの修正</h1>
-<h2 id="computed_を使ってフィルタリング処理を実装しよう。">2. computed を使ってフィルタリング処理を実装しよう。</h2>
+<h2 id="修正対象のソース">1. 修正対象のソース</h2>
+<ul>
+<li><p><strong>src\components\Header.vue</strong> </p>
+<p>修正する前に一度、状況を確認してみましょう。<br><a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a>  </p>
+<p>「大分類」から、何か選択した状態で「中分類」のリストをクリックしてみてください。<br><img src="img/mediumCategory1.jpg" alt="gras">  </p>
+<p>特にフィルタリング処理は実装されておらず、大分類を変更しても中分類リストの選択肢一覧に変更がないことが分かったかと思います。  </p>
+<h2 id="computedのおさらい">2. computedのおさらい</h2>
+<p>業務において、データに何かしらの処理を加えてから表示させたい。という場面があると思います。<br>そんな時に使えるのがcomputedプロパティです。<br>computedは一度計算後、同じ処理が呼び出された際も以前計算時にキャッシュされたデータを即時返すだけなので何度も同じ処理を行いません。<br>キャッシュが削除され再度計算されるのは、依存するデータの値が更新されたときだけです。<br>methodsは結果をキャッシュしないので、一度計算を行った場合でも、呼び出されるたびに再計算が行われます。</p>
+<h2 id="computedとwatchの違いのおさらい">3. computedとwatchの違いのおさらい</h2>
+<h3 id="watchって？">3.1. watchって？</h3>
+<p>特定のデータまたは computed プロパティの状態を監視して、変化があったとき登録した処理を自動的に実行するものです。<br>データの変更を監視して、それをトリガーに処理を行う必要がある時に使えます。<br>具体的には<br>・computed プロパティでは処理できない非同期通信などの複雑な処理を行う場合<br>・処理の中で更新前と更新後の値を使う場合<br>・処理を実行しても、データは返さない場合<br>上記にあたる場合はwatchを使って処理をすることが望ましいでしょう。  </p>
+</li>
+</ul>
+<h2 id="computed_を使ってフィルタリング処理を実装しよう。">4. computed を使ってフィルタリング処理を実装しよう。</h2>
 <p>おさらいを確認したうえで、、あらためて修正をすすめていきましょう！</p>
 <ol>
 <li><p>Ctrl+P(MACの場合Command+P) を押下してファイル検索を表示し、「Header.vue」を開く</p>
@@ -317,7 +322,7 @@ filterdMediumCategory を以下のように修正してください</p>
 <p>  <img src="img/mediumCategory2.jpg" alt="gras"></p>
 <hr>
 <p>  次の手順では、商品検索画面の修正を行います！</p>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#4_src%5Ccomponents%5CHeader_vueの修正">4.src\components\Header.vueの修正</a></p><li><a href="#watchって？">1. watchって？</a></li><li><a href="#computed_を使ってフィルタリング処理を実装しよう。">2. computed を使ってフィルタリング処理を実装しよう。</a></li></ul></div><a href="#watchって？" id="goTop"><i class="fa fa-arrow-up"></i></a>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#コード修正(ヘッダー)">コード修正(ヘッダー)</a></p><li><a href="#修正対象のソース">1. 修正対象のソース</a></li><li><a href="#computedのおさらい">2. computedのおさらい</a></li><li><a href="#computedとwatchの違いのおさらい">3. computedとwatchの違いのおさらい</a></li><ul><li><a href="#watchって？">3.1. watchって？</a></li></ul><li><a href="#computed_を使ってフィルタリング処理を実装しよう。">4. computed を使ってフィルタリング処理を実装しよう。</a></li></ul></div><a href="#修正対象のソース" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -360,7 +365,7 @@ filterdMediumCategory を以下のように修正してください</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"コード修正(ヘッダー)","level":"1.5","depth":1,"next":{"title":"コード修正(商品検索)","level":"1.6","depth":1,"path":"item_search.md","ref":"item_search.md","articles":[]},"previous":{"title":"コード修正(App.vue)","level":"1.4","depth":1,"path":"component.md","ref":"component.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"header.md","mtime":"2022-06-01T09:55:33.666Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-02T10:29:31.399Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"コード修正(ヘッダー)","level":"1.5","depth":1,"next":{"title":"コード修正(商品検索)","level":"1.6","depth":1,"path":"item_search.md","ref":"item_search.md","articles":[]},"previous":{"title":"コード修正(App.vue)","level":"1.4","depth":1,"path":"component.md","ref":"component.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"header.md","mtime":"2022-06-03T09:44:33.652Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-03T09:57:19.532Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

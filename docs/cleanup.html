@@ -286,14 +286,14 @@
 <p><img src="img/環境削除.png" alt="gras"></p>
 <ol>
 <li><p>コンテナの停止<br>以下コマンドでDockerコンテナを停止します。</p>
-<pre><code>$ docker-compose down
+<pre><code>docker-compose down
 </code></pre><p>コンテナが停止しているか確認します。</p>
-<pre><code>$ docker-compose ps
+<pre><code>docker-compose ps
 Name   Command   State   Ports
 ------------------------------
 </code></pre></li>
 <li><p>イメージの削除</p>
-<pre><code>$ docker images                                                                                                                                   
+<pre><code>docker images                                                                                                                                   
 REPOSITORY                                                                   TAG                                                     IMAGE ID     
 CREATED         SIZE
 mirameetvol29_server                                                         latest                                                  ba2bac2d2844 
@@ -308,21 +308,7 @@ mirameetvol29_client                                                         lat
 <li><p>フォルダの削除<br>最後にフォルダを削除します。  </p>
 </li>
 </ol>
-<p>3.1. Macの場合  </p>
-<pre><code># 一つ上の階層に移動
-cd ../
-# xxxxxxxxxxxフォルダが存在しているかを確認
-ls
-# xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除
-rm -rf xxxxxxxxx
-</code></pre><p>3.2. Windowsの場合  </p>
-<pre><code># 一つ上の階層に移動
-cd ../
-# xxxxxxxxxxxフォルダが存在しているかを確認
-dir
-# xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除
-Remove-Item xxxxxxxxxx -Recurse -Force
-</code></pre><p>以上で本日のハンズオンは終了となります。皆様お疲れ様でした！</p>
+<p>以上で本日のハンズオンは終了となります。皆様お疲れ様でした！</p>
 
                                 
                                 </section>
@@ -362,7 +348,7 @@ Remove-Item xxxxxxxxxx -Recurse -Force
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"local環境のCleanUp","level":"1.10","depth":1,"previous":{"title":"コード修正(カート) 回答","level":"1.9","depth":1,"path":"cart_answer.md","ref":"cart_answer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"cleanup.md","mtime":"2022-06-01T09:55:33.664Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-02T10:29:31.399Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"local環境のCleanUp","level":"1.10","depth":1,"previous":{"title":"コード修正(カート) 回答","level":"1.9","depth":1,"path":"cart_answer.md","ref":"cart_answer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"cleanup.md","mtime":"2022-06-03T09:44:33.626Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-03T09:57:19.532Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

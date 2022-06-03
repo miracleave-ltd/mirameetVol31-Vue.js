@@ -283,109 +283,113 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="商品をカートに入れる機能を実装する(Vuex)"><a name="商品をカートに入れる機能を実装するvuex" class="plugin-anchor" href="#商品をカートに入れる機能を実装するvuex"><i class="fa fa-link" aria-hidden="true"></i></a>商品をカートに入れる機能を実装する(Vuex)</h1>
+                                <h1 id="コード修正(商品情報詳細)"><a name="コード修正商品情報詳細" class="plugin-anchor" href="#コード修正商品情報詳細"><i class="fa fa-link" aria-hidden="true"></i></a>コード修正(商品情報詳細)</h1>
 <h2 id="修正対象のソース">1. 修正対象のソース</h2>
 <ul>
 <li>src/store/index.js</li>
 <li>src/views/detailView.vue</li>
 </ul>
 <p>続いては商品詳細画面です。</p>
-<p>この画面は、検索画面で選択した商品の詳細情報が掲載されています。またこの画面でポイントとなるのはカートに入れる機能です。</p>
+<p>この画面は、検索画面で選択した商品の詳細情報が掲載されています。またこの画面でポイントとなるのは、<strong>商品をカートに入れる機能</strong>です。</p>
 <p><img src="img/flow.png" alt="gras"></p>
-<h2 id="store_index_jsにカートに追加するための機能を実装する。">2. store/index.jsにカートに追加するための機能を実装する。</h2>
+<h2 id="商品をカートに追加するための機能を実装しよう。">2. 商品をカートに追加するための機能を実装しよう。</h2>
 <ul>
-<li>src/store/index.js←今回修正する箇所  </li>
+<li><strong>src/store/index.js</strong> ← 修正するファイル  </li>
 </ul>
 <p>修正する前に一度、状況を確認してみましょう。<br><a href="http://localhost:8080/detail?itemCode=2" target="_blank">http://localhost:8080/detail?itemCode=2</a><br>商品の個数を選択して、カートに入れるボタンを押下してみてください。<br>「カートに追加しました。」というダイアログが出て、OKボタンを押下すると検索画面へ戻ります。<br><img src="img/detail_handson_1.jpg" alt="gras">
 では、この状態でカート画面へ遷移してみましょう。<br><a href="http://localhost:8080/cart" target="_blank">http://localhost:8080/cart</a><br>先ほどカートに商品を追加したはずですが、カート画面を開いてみても、何も表示されません。
-<img src="img/detail_handson_2.jpg" alt="gras"><br>確認できたところで、改めて修正を進めていきましょう。</p>
-<p>今回はVuexというライブラリを使用して、商品をカートに入れます。
+<img src="img/detail_handson_2.jpg" alt="gras"><br>確認できたところで、改めて修正を進めていきましょう。<br><br>
+今回はVuexというライブラリを使用して、商品をカートに入れます。
 &quot;Vuex&quot;とはVue.js アプリケーションのための 状態管理パターン + ライブラリです。</p>
 <p><a href="https://vuex.vuejs.org/ja/" target="_blank">https://vuex.vuejs.org/ja/</a> (Vue.js公式サイトより)</p>
-<p>では、実際に修正してましょう。今回修正する箇所は&quot;src/store/index.js&quot;の&quot;mutations&quot;の箇所です。<br>今回は、mutetionsにカートに入れるボタンを押下した際に、商品情報を保持するための処理を追加します。 </p>
+<p>では、実際に修正していきましょう。今回修正する箇所は&quot;src/store/index.js&quot;の&quot;mutations&quot;の箇所です。<br>mutationsにカートに入れるボタンを押下した際に、商品情報を保持するための処理を追加します。 </p>
 <p>変更前</p>
-<pre><code>  mutations: {
-    // 商品削除
+<pre><code class="lang-javascript">  mutations: {
+    <span class="hljs-comment">// 商品削除</span>
     deleteItem (state, item) {
-      // 引数で渡された行を削除
-      state.itemList.splice(item, 1)
+      <span class="hljs-comment">// 引数で渡された行を削除</span>
+      state.itemList.splice(item, <span class="hljs-number">1</span>)
     },
-    // 商品リスト初期化
+    <span class="hljs-comment">// 商品リスト初期化</span>
     clearItem (state) {
       state.itemList = []
     }
   }
-</code></pre><p>変更後</p>
+</code></pre>
+<p>変更後</p>
 <p>18行目のmutationsの下に商品追加のソースを追加してください。</p>
-<pre><code>  mutations: {
-    // 商品追加
+<pre><code class="lang-javascript">  mutations: {
+    <span class="hljs-comment">// 商品追加</span>
     pushItem (state, item) {
-      // 引数で渡された配列をまるごとpush
+      <span class="hljs-comment">// 引数で渡された配列をまるごとpush</span>
       state.itemList.push(item)
     },
-    // 商品削除
+    <span class="hljs-comment">// 商品削除</span>
     deleteItem (state, item) {
-      // 引数で渡された行を削除
-      state.itemList.splice(item, 1)
+      <span class="hljs-comment">// 引数で渡された行を削除</span>
+      state.itemList.splice(item, <span class="hljs-number">1</span>)
     },
-    // 商品リスト初期化
+    <span class="hljs-comment">// 商品リスト初期化</span>
     clearItem (state) {
       state.itemList = []
     }
   },
-</code></pre><p>pushItemはカートボタンをクリック時に使用し、これで商品情報を保持させることができます<br>この処理はこの後detailView.vueの修正でも使用します。<br>他にも商品削除のdeleteItemなどありますが、こちらは次の章のカート画面上で使用します。<br>商品をカートの保持情報から削除するための処理になります。</p>
-<h2 id="views_detailView_vueにカートに入れる機能を追加する。">3. views/detailView.vueにカートに入れる機能を追加する。</h2>
+</code></pre>
+<p>pushItemはカートボタンをクリック時に使用し、これで商品情報を保持させることができます。<br>この処理は、この後detailView.vueの修正でも使用します。<br>他にも商品削除のdeleteItemなどありますが、こちらは次の章のカート画面上で使用します。<br>商品をカートの保持情報から削除するための処理になります。</p>
+<h2 id="カートに入れる機能を追加しよう。">3. カートに入れる機能を追加しよう。</h2>
 <ul>
-<li>src/views/detailView.vue←今回修正するファイル</li>
+<li><strong>src/views/detailView.vue</strong> ← 今回修正するファイル</li>
 </ul>
 <p>ここでは、商品検索で選択した商品情報をカートに入れる処理を追加します。
 methodsの中にある「additem」の処理を下記のように修正してみましょう。</p>
 <p>変更前</p>
-<pre><code>addItem () {
-  // storeに保存後ダイアログ表示して検索画面へ戻る
-  this.$swal({
-    title: &apos;完了&apos;,
-    icon: &apos;success&apos;,
-    text: &apos;カートへ追加しました。&apos;,
-    type: &apos;success&apos;,
-    confirmButtonText: &apos;OK&apos;
-  }).then((info) =&gt; {
-    this.$router.push({ path: &apos;/&apos; })
+<pre><code class="lang-javascript">addItem () {
+  <span class="hljs-comment">// storeに保存後ダイアログ表示して検索画面へ戻る</span>
+  <span class="hljs-built_in">this</span>.$swal({
+    <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;完了&apos;</span>,
+    <span class="hljs-attr">icon</span>: <span class="hljs-string">&apos;success&apos;</span>,
+    <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;カートへ追加しました。&apos;</span>,
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;success&apos;</span>,
+    <span class="hljs-attr">confirmButtonText</span>: <span class="hljs-string">&apos;OK&apos;</span>
+  }).then(<span class="hljs-function">(<span class="hljs-params">info</span>) =&gt;</span> {
+    <span class="hljs-built_in">this</span>.$router.push({ <span class="hljs-attr">path</span>: <span class="hljs-string">&apos;/&apos;</span> })
   })
 }
-</code></pre><p>変更後</p>
+</code></pre>
+<p>変更後</p>
 <p>104行目の addItemの下に商品情報を保持するためのソースを追加してください。</p>
-<pre><code>addItem () {
-  // storeに保存後ダイアログ出して検索画面に戻る
-  const param = {
-    name: this.productName,
-    description: this.description,
-    price: this.price,
-    quantity: Number(this.quantity),
-    imageUrl: this.img // 商品画像
+<pre><code class="lang-javascript">addItem () {
+  <span class="hljs-comment">// storeに保存後ダイアログ表示して検索画面に戻る</span>
+  <span class="hljs-keyword">const</span> param = {
+    <span class="hljs-attr">name</span>: <span class="hljs-built_in">this</span>.productName,
+    <span class="hljs-attr">description</span>: <span class="hljs-built_in">this</span>.description,
+    <span class="hljs-attr">price</span>: <span class="hljs-built_in">this</span>.price,
+    <span class="hljs-attr">quantity</span>: <span class="hljs-built_in">Number</span>(<span class="hljs-built_in">this</span>.quantity),
+    <span class="hljs-attr">imageUrl</span>: <span class="hljs-built_in">this</span>.img <span class="hljs-comment">// 商品画像</span>
   }
-  this.$store.commit(&apos;pushItem&apos;, param)
-  // storeに保存後ダイアログ表示して検索画面へ戻る
-  this.$swal({
-    title: &apos;完了&apos;,
-    icon: &apos;success&apos;,
-    text: &apos;カートへ追加しました。&apos;,
-    type: &apos;success&apos;,
-    confirmButtonText: &apos;OK&apos;
-  }).then((info) =&gt; {
-    this.$router.push({ path: &apos;/&apos; })
+  <span class="hljs-built_in">this</span>.$store.commit(<span class="hljs-string">&apos;pushItem&apos;</span>, param)
+  <span class="hljs-comment">// storeに保存後ダイアログ表示して検索画面へ戻る</span>
+  <span class="hljs-built_in">this</span>.$swal({
+    <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;完了&apos;</span>,
+    <span class="hljs-attr">icon</span>: <span class="hljs-string">&apos;success&apos;</span>,
+    <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;カートへ追加しました。&apos;</span>,
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;success&apos;</span>,
+    <span class="hljs-attr">confirmButtonText</span>: <span class="hljs-string">&apos;OK&apos;</span>
+  }).then(<span class="hljs-function">(<span class="hljs-params">info</span>) =&gt;</span> {
+    <span class="hljs-built_in">this</span>.$router.push({ <span class="hljs-attr">path</span>: <span class="hljs-string">&apos;/&apos;</span> })
   })
 }
-</code></pre><p>まず画面に表示されている商品のパラメーターをオブジェクトparamに設定します。それぞれ商品名・商品説明・値段・数量・商品画像です。</p>
-<p>次に先ほど追加した「pushItem」を呼び出して商品情報をstoreに追加します。<br>書き方としては、this.$store.commit(&apos;呼び出す処理名&apos;,処理に渡す引数)でstoreのstateの値を変更します。<br>第一引数をstore/index.jsのmutationsに追加したpushItemにします。<br>第二引数は商品情報をもった変数paramすることで、<br>store/index.jsのstateのitemListに商品情報を追加します。</p>
-<p>カート画面ではstoreの保持しているitemListをgettersを使用して、カート画面上に表示されることになります。</p>
+</code></pre>
+<p>まず画面に表示されている商品のパラメーターをオブジェクトparamに設定します。それぞれ商品名・商品説明・値段・数量・商品画像です。</p>
+<p>次に先ほど追加した「pushItem」を呼び出して商品情報をstoreに追加します。<br>書き方としては、this.$store.commit(&apos;呼び出す処理名&apos;,処理に渡す引数)でstoreのstateの値を変更します。<br>第一引数をstore/index.jsのmutationsに追加したpushItemにします。<br>第二引数は商品情報をもった変数paramにすることで、<br>store/index.jsのstateのitemListに商品情報を追加します。</p>
+<p>カート画面ではstoreの保持しているitemListを、gettersを使用することでカート画面上に表示させています。</p>
 <h2 id="動作確認">4. 動作確認</h2>
 <p>動作確認をしてみましょう。
 プルダウンで任意の商品数を選択肢し、商品を購入のボタンをクリックしてください。</p>
 <p>下記のように完了のダイアログが表示され検索画面に遷移します。<br><img src="img/GoCart.png" alt="gras"><br>商品がカートに入っているか確認してみましょう。<br>画面右上のショッピングカートのアイコンをクリックすることで、カート画面へ遷移します。<br>カートに入れた商品が表示されることがわかるかと思います。<br><img src="img/detail_handson_3.jpg" alt="gras">  </p>
-<p>また商品を削除するのにもVuexが使用されております。
+<p>商品を削除するのにもVuexが使用されております。
 mutationsに既にあったdeleteItemとclearItemです。deleteItemはカートに入った商品を削除する時に、clearItemは商品を注文した時に使用します。</p>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#商品をカートに入れる機能を実装する(Vuex)">商品をカートに入れる機能を実装する(Vuex)</a></p><li><a href="#修正対象のソース">1. 修正対象のソース</a></li><li><a href="#store_index_jsにカートに追加するための機能を実装する。">2. store/index.jsにカートに追加するための機能を実装する。</a></li><li><a href="#views_detailView_vueにカートに入れる機能を追加する。">3. views/detailView.vueにカートに入れる機能を追加する。</a></li><li><a href="#動作確認">4. 動作確認</a></li></ul></div><a href="#修正対象のソース" id="goTop"><i class="fa fa-arrow-up"></i></a>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#コード修正(商品情報詳細)">コード修正(商品情報詳細)</a></p><li><a href="#修正対象のソース">1. 修正対象のソース</a></li><li><a href="#商品をカートに追加するための機能を実装しよう。">2. 商品をカートに追加するための機能を実装しよう。</a></li><li><a href="#カートに入れる機能を追加しよう。">3. カートに入れる機能を追加しよう。</a></li><li><a href="#動作確認">4. 動作確認</a></li></ul></div><a href="#修正対象のソース" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -428,7 +432,7 @@ mutationsに既にあったdeleteItemとclearItemです。deleteItemはカート
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"コード修正(商品情報詳細)","level":"1.7","depth":1,"next":{"title":"コード修正(カート)","level":"1.8","depth":1,"path":"cart.md","ref":"cart.md","articles":[]},"previous":{"title":"コード修正(商品検索)","level":"1.6","depth":1,"path":"item_search.md","ref":"item_search.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"item_detail.md","mtime":"2022-06-01T09:55:33.701Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-02T10:29:31.399Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"コード修正(商品情報詳細)","level":"1.7","depth":1,"next":{"title":"コード修正(カート)","level":"1.8","depth":1,"path":"cart.md","ref":"cart.md","articles":[]},"previous":{"title":"コード修正(商品検索)","level":"1.6","depth":1,"path":"item_search.md","ref":"item_search.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"item_detail.md","mtime":"2022-06-03T09:44:33.659Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-03T09:57:19.532Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

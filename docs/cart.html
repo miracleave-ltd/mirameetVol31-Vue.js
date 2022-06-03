@@ -283,14 +283,14 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="Vue_jsの機能を活用してコードの修正をしてみよう"><a name="vuejsの機能を活用してコードの修正をしてみよう" class="plugin-anchor" href="#vuejsの機能を活用してコードの修正をしてみよう"><i class="fa fa-link" aria-hidden="true"></i></a>Vue.jsの機能を活用してコードの修正をしてみよう</h1>
-<p><img src="img/カート画面.png" alt="gras"></p>
-<h2 id="修正対象のソース">1. 修正対象のソース</h2>
+                                <h1 id="コード修正(カート)"><a name="コード修正カート" class="plugin-anchor" href="#コード修正カート"><i class="fa fa-link" aria-hidden="true"></i></a>コード修正(カート)</h1>
+<h2 id="確認対象のソース">1. 確認対象のソース</h2>
 <ul>
-<li>client/ecsite/src/views/Cart.vue</li>
+<li>src/views/Cart.vue</li>
 </ul>
-<h2 id="既存コードの問題確認">2. 既存コードの問題確認</h2>
-<p>カート画面上に商品詳細画面でカートに追加した商品が表示されています。画面右側に商品の合計値が表示されていますね。<br><img src="img/cart_handson_1.jpg" alt="gras"><br>カートに入っている商品を削除ボタンで削除してみると、合計額が変更されるのを確認できると思います。<br><img src="img/cart_handson_2.jpg" alt="gras"><br>カート画面のソースを確認すると mounted の際にもhandleDelete method 内にも合計値取得処理（this.getTotal())が記載されています。  </p>
+<p><img src="img/カート画面.png" alt="gras"></p>
+<h2 id="既存コードを確認しよう。">2. 既存コードを確認しよう。</h2>
+<p>カート画面上に商品詳細画面でカートに追加した商品が表示されています。画面右側に商品の合計値が表示されていますね。<br><img src="img/cart_handson_1.jpg" alt="gras"><br>カートに入っている商品を削除ボタンで削除してみると、合計額が変更されるのを確認できると思います。<br><img src="img/cart_handson_2.jpg" alt="gras"><br>カート画面のソースを確認すると、 mounted の際にも、handleDelete にも合計値取得処理（this.getTotal())が記載されています。  </p>
 <pre><code class="lang-javascript">    mounted: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
         <span class="hljs-comment">// DOMのマウント終了後の処理</span>
         <span class="hljs-comment">/** 合計値取得処理 */</span>
@@ -320,13 +320,13 @@
         }
     },
 </code></pre>
-<p>今まで登場したVue.jsの機能を使えば削除ボタンのクリックイベント発火時に毎回合計値取得処理を明示的に呼び出す必要がなくなります。<br>ここで今日のハンズオン参加者の皆様にクイズです。ここで利用するべきVue.jsの機能とは一体何でしょうか？</p>
+<p>今まで登場したVue.jsの機能を使えば、削除ボタンのクリックイベント発火時に毎回合計値取得処理を明示的に呼び出す必要がなくなります。<br>ここで今日のハンズオン参加者の皆様にクイズです。ここで利用するべきVue.jsの機能とは一体何でしょうか？</p>
 <ol>
-<li>created</li>
-<li>mounted</li>
-<li>computed<br>皆さん、考えてみましょう！</li>
+<li><strong>created</strong></li>
+<li><strong>mounted</strong></li>
+<li><strong>computed</strong><br>皆さん、考えてみましょう！</li>
 </ol>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#Vue_jsの機能を活用してコードの修正をしてみよう">Vue.jsの機能を活用してコードの修正をしてみよう</a></p><li><a href="#修正対象のソース">1. 修正対象のソース</a></li><li><a href="#既存コードの問題確認">2. 既存コードの問題確認</a></li></ul></div><a href="#修正対象のソース" id="goTop"><i class="fa fa-arrow-up"></i></a>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#コード修正(カート)">コード修正(カート)</a></p><li><a href="#確認対象のソース">1. 確認対象のソース</a></li><li><a href="#既存コードを確認しよう。">2. 既存コードを確認しよう。</a></li></ul></div><a href="#確認対象のソース" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -369,7 +369,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"コード修正(カート)","level":"1.8","depth":1,"next":{"title":"コード修正(カート) 回答","level":"1.9","depth":1,"path":"cart_answer.md","ref":"cart_answer.md","articles":[]},"previous":{"title":"コード修正(商品情報詳細)","level":"1.7","depth":1,"path":"item_detail.md","ref":"item_detail.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"cart.md","mtime":"2022-06-01T09:55:33.663Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-02T10:29:31.399Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"コード修正(カート)","level":"1.8","depth":1,"next":{"title":"コード修正(カート) 回答","level":"1.9","depth":1,"path":"cart_answer.md","ref":"cart_answer.md","articles":[]},"previous":{"title":"コード修正(商品情報詳細)","level":"1.7","depth":1,"path":"item_detail.md","ref":"item_detail.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"cart.md","mtime":"2022-06-03T09:44:33.613Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-03T09:57:19.532Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

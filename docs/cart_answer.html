@@ -283,56 +283,15 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="Vue_jsの機能を活用してコードの修正をしてみよう_回答編"><a name="vuejsの機能を活用してコードの修正をしてみよう-回答編" class="plugin-anchor" href="#vuejsの機能を活用してコードの修正をしてみよう-回答編"><i class="fa fa-link" aria-hidden="true"></i></a>Vue.jsの機能を活用してコードの修正をしてみよう 回答編</h1>
-<p><img src="img/handson_cart.png" alt="gras">  </p>
+                                <h1 id="コード修正(カート)_回答編"><a name="コード修正カート-回答編" class="plugin-anchor" href="#コード修正カート-回答編"><i class="fa fa-link" aria-hidden="true"></i></a>コード修正(カート) 回答編</h1>
 <h2 id="修正対象のソース">1. 修正対象のソース</h2>
 <ul>
-<li>client/ecsite/src/views/Cart.vue</li>
+<li><strong>src/views/Cart.vue</strong></li>
 </ul>
-<p>それでは答え合わせしてみましょう！<br>今回使用するVue.jsの機能は「computed」になります！皆さん予想はどうでしたでしょうか？<br>早速ですが「computed」を使って画面の修正を行ってみましょう！</p>
+<p>答え合わせです！<br>正解は<strong>computed</strong>になります！
+早速、<strong>computed</strong>を使ってコード修正を行ってみましょう！</p>
 <h2 id="ソースコードの修正">2. ソースコードの修正</h2>
-<p>mounted と handleDelete から合計値取得処理を削除して、getTotal method を computed内に書き換えます。</p>
-<ul>
-<li>修正前</li>
-</ul>
-<p>mounted</p>
-<pre><code class="lang-javascript">    mounted: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-        <span class="hljs-comment">// DOMのマウント終了後の処理</span>
-        <span class="hljs-comment">/** 合計値取得処理 */</span>
-        <span class="hljs-built_in">this</span>.totalPrice = <span class="hljs-built_in">this</span>.getTotal()
-    },
-</code></pre>
-<p>methods</p>
-<pre><code class="lang-javascript">    getPrice (price, quantity) {
-      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Number</span>(price * quantity)
-    },
-    <span class="hljs-comment">/**
-     * 削除ボタン押下
-     */</span>
-    handleDelete (index) {
-      <span class="hljs-comment">// storeから該当商品を削除</span>
-      <span class="hljs-built_in">this</span>.$store.commit(<span class="hljs-string">&apos;deleteItem&apos;</span>, index)
-      <span class="hljs-comment">/** 合計値取得処理 */</span>
-      <span class="hljs-built_in">this</span>.totalPrice = <span class="hljs-built_in">this</span>.getTotal()
-    },
-    <span class="hljs-comment">/**
-     *合計値取得
-    */</span>
-    getTotal () {
-      <span class="hljs-keyword">let</span> price = <span class="hljs-number">0</span>
-      <span class="hljs-built_in">this</span>.getItemList.forEach(<span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
-        price += element.price * element.quantity
-      })
-      <span class="hljs-keyword">return</span> price
-    },
-</code></pre>
-<p>computed</p>
-<pre><code class="lang-javascript">    computed: {
-        getItemList () {
-          <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.$store.getters.getItemList
-        }
-    },
-</code></pre>
+<p>mounted と handleDelete から合計値取得処理を削除して、getTotal method を computed内に書き換えます。  </p>
 <ul>
 <li>修正後<br>mounted<br>this.totalPrice = this.getTotal()を削除<pre><code class="lang-javascript">  mounted: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
       <span class="hljs-comment">// DOMのマウント終了後の処理</span>
@@ -406,8 +365,9 @@ computed<br>getTotal()処理を追加<pre><code class="lang-javascript">  comput
 <span class="hljs-tag">&lt;/<span class="hljs-name">b-card-group</span>&gt;</span>
 </code></pre>
 <h2 id="修正内容の確認">3. 修正内容の確認</h2>
-<p>ブラウザをリロードしてみて表示されている内容に問題がないか確認してみましょう。<br>機能としては、修正前と同じく、商品をカートから削除した際に合計額が再計算されます。<br><img src="img/cart_handson_1.jpg" alt="gras"><br><img src="img/cart_handson_2.jpg" alt="gras"><br>ソースコード上では色々な場所から同じ処理を呼び出す事がなくなり、保守の観点でも修正箇所が減って可読性も上がりました。<br>このように、プログラムの外部から見た動作を変えずにソースコードの内部構造を整理することを「リファクタリング」と言います。<br>実務においてもリファクタリングを行う場面は多々あると思います。ぜひ覚えておいてください！  </p>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#Vue_jsの機能を活用してコードの修正をしてみよう_回答編">Vue.jsの機能を活用してコードの修正をしてみよう 回答編</a></p><li><a href="#修正対象のソース">1. 修正対象のソース</a></li><li><a href="#ソースコードの修正">2. ソースコードの修正</a></li><li><a href="#修正内容の確認">3. 修正内容の確認</a></li></ul></div><a href="#修正対象のソース" id="goTop"><i class="fa fa-arrow-up"></i></a>
+<p>ブラウザをリロードしてみて表示されている内容に問題がないか確認してみましょう。<br>機能としては、修正前と同じく、商品をカートから削除した際に合計額が再計算されます。<br><img src="img/cart_handson_1.jpg" alt="gras"><br><img src="img/cart_handson_2.jpg" alt="gras"><br><br>
+ソースコード上では色々な場所から同じ処理を呼び出す事がなくなり、保守の観点でも修正箇所が減って可読性も上がりました。<br>このように、プログラムの外部から見た動作を変えずにソースコードの内部構造を整理することを<strong>リファクタリング</strong>と言います。<br>実務においてもリファクタリングを行う場面は多々あると思います。ぜひ覚えておいてください！  </p>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#コード修正(カート)_回答編">コード修正(カート) 回答編</a></p><li><a href="#修正対象のソース">1. 修正対象のソース</a></li><li><a href="#ソースコードの修正">2. ソースコードの修正</a></li><li><a href="#修正内容の確認">3. 修正内容の確認</a></li></ul></div><a href="#修正対象のソース" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -450,7 +410,7 @@ computed<br>getTotal()処理を追加<pre><code class="lang-javascript">  comput
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"コード修正(カート) 回答","level":"1.9","depth":1,"next":{"title":"local環境のCleanUp","level":"1.10","depth":1,"path":"cleanup.md","ref":"cleanup.md","articles":[]},"previous":{"title":"コード修正(カート)","level":"1.8","depth":1,"path":"cart.md","ref":"cart.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"cart_answer.md","mtime":"2022-06-01T09:55:33.663Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-02T10:29:31.399Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"コード修正(カート) 回答","level":"1.9","depth":1,"next":{"title":"local環境のCleanUp","level":"1.10","depth":1,"path":"cleanup.md","ref":"cleanup.md","articles":[]},"previous":{"title":"コード修正(カート)","level":"1.8","depth":1,"path":"cart.md","ref":"cart.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"cart_answer.md","mtime":"2022-06-03T09:44:33.619Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-03T09:57:19.532Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
