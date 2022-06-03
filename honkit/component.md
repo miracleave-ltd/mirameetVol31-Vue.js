@@ -1,14 +1,14 @@
-# アプリケーションコード修正(コンポーネント)
+# コード修正(App.vue)
 
 当手順では、以下の赤枠部分を実施します。
   ![gras](img/handson_itemSearch.png)
 
-# 1.当画面に関連するソースファイル
-  src\App.vue←修正対象
+## 当画面に関連するソースファイル
+  &emsp;**src\App.vue**&emsp;←&emsp;修正対象
 
-  src\components\Header.vue
+  &emsp;src\components\Header.vue
 
-  src\router\index.js
+  &emsp;src\router\index.js  
 
   修正する前に一度、状況を確認してみましょう。
 
@@ -18,11 +18,10 @@
 
   ![gras](img/component1.jpg)
 
-  確認できたところで、あらためて修正をすすめていきましょう！
+  確認できたところで、あらためて修正をすすめていきましょう！  
 
-  
 
-# 2.src\App.vueの修正
+## src\App.vueの修正
 
 vueファイルは主に  
   ・templateタグ：html要素を記述する  
@@ -39,9 +38,10 @@ vueファイルは主に
 ## ヘッダーをインポートして画面に配置しよう。
 
 src\App.vue にヘッダー用のコンポーネントをインポートし、画面上に配置します。  
-1. Ctrl+P(MACの場合Command+P) を押下してファイル検索を表示し、「App.vue」を開く  
+1. Ctrl+P(MACの場合Command+P) を押下してファイル検索を表示し、「App.vue」を開きます。  
 2. ソースを以下のように修正してください。修正したら、ファイルを上書き保存してください。
 
+<br/>
 修正前
 
 ```javascript
@@ -82,12 +82,14 @@ export default {
 }
 </script>
 ```
-
+<br/><br/>
  画面上部にヘッダーが実装できました。
 
   ![gras](img/component2.jpg)
-
-  ## 補足:ルーティングの説明
+<br/>
+<br/>
+<br/>
+## 補足:ルーティングの説明
 
   app.vueの以下の部分(Vue Router)
 
@@ -97,7 +99,7 @@ export default {
   </div>
 ```
 
- Vue Routerとは、 Vue.jsを利用したSPA構築で、ルーティング制御をするための公式プラグインです
+ **Vue Router**とは、 Vue.jsを利用したSPA構築で、ルーティング制御をするための公式プラグインです。
  
  src\router\index.js内に、アプリケーションのルーティングを記述しています。
 
@@ -157,5 +159,5 @@ export default router
 「router-view」の内容がそのURLに設定されたページを表示してくれます。
 
 ---
-
+<br/>
 次の手順では、ヘッダー内の修正を行っていきます！

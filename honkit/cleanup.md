@@ -7,18 +7,18 @@
 1. コンテナの停止  
 以下コマンドでDockerコンテナを停止します。
 ```
-$ docker-compose down
+docker-compose down
 ```
 コンテナが停止しているか確認します。
 ```
-$ docker-compose ps
+docker-compose ps
 Name   Command   State   Ports
   ------------------------------
 ```
 
 2. イメージの削除
 ```
-$ docker images                                                                                                                                   
+docker images                                                                                                                                   
 REPOSITORY                                                                   TAG                                                     IMAGE ID     
   CREATED         SIZE
 mirameetvol29_server                                                         latest                                                  ba2bac2d2844 
@@ -38,24 +38,5 @@ Untagged: meetup_web...
 3. フォルダの削除  
 最後にフォルダを削除します。  
 
-3.1. Macの場合  
-```
-# 一つ上の階層に移動
-cd ../
-# xxxxxxxxxxxフォルダが存在しているかを確認
-ls
-# xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除
-rm -rf xxxxxxxxx
-```
-
-3.2. Windowsの場合  
-```
-# 一つ上の階層に移動
-cd ../
-# xxxxxxxxxxxフォルダが存在しているかを確認
-dir
-# xxxxxxxxxxxフォルダが存在している場合、下記コマンドを実行しフォルダを削除
-Remove-Item xxxxxxxxxx -Recurse -Force
-```
 
 以上で本日のハンズオンは終了となります。皆様お疲れ様でした！
