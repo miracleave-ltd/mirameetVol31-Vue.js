@@ -285,58 +285,39 @@
                                 
                                 <h1 id="コード修正(商品検索画面)"><a name="コード修正商品検索画面" class="plugin-anchor" href="#コード修正商品検索画面"><i class="fa fa-link" aria-hidden="true"></i></a>コード修正(商品検索画面)</h1>
 <p>当手順では、以下の赤枠部分を実施します。
-  <img src="img/handson_itemSearch.png" alt="gras"></p>
+<img src="img/handson_itemSearch.png" alt="gras"></p>
 <h2 id="修正対象のソース">1. 修正対象のソース</h2>
 <ul>
-<li><p><strong>src\views\itemSearch.vue</strong></p>
+<li><strong>src\views\itemSearch.vue</strong></li>
+</ul>
 <p>修正する前に一度、状況を確認してみましょう。</p>
 <p><a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a></p>
 <p>画面としては、「商品検索画面」と表示されるのみで、商品一覧は検索されていないことがわかります。</p>
 <p><img src="img/itemSearch1.jpg" alt="gras"></p>
 <p>確認できたところで、あらためて修正をすすめていきましょう！</p>
-</li>
-</ul>
 <h2 id="created_を使って画面初期表示時の処理を実装しよう。">2. created を使って画面初期表示時の処理を実装しよう。</h2>
-<ol>
-<li><p>Ctrl+P(MACの場合Command＋P) を押下してファイル検索を表示し、「itemSearch.vue」を開く。</p>
-</li>
-<li><p>Ctrl ＋ F(MACの場合Command+F) で検索欄を表示し、「created」内に初期表示時の処理を記述する。<br>今回は、クエリパラメータを受け取って検索処理を行う「search()」を初期表示時に実行するようにしてみます。
-created を以下のように修正してください</p>
-</li>
-</ol>
+<p>Ctrl+P(MAC の場合 Command ＋ P) を押下してファイル検索を表示し、「itemSearch.vue」を開く。<br>Ctrl ＋ F(MAC の場合 Command+F) で検索欄を表示し、「created」内に初期表示時の処理を記述する。<br>今回は、クエリパラメータを受け取って検索処理を行う「search()」を初期表示時に実行するようにしてみます。<br>created を以下のように修正してください</p>
 <p>変更前</p>
 <pre><code class="lang-javascript">  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-comment">// 初期表示時処理</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;created&apos;</span>)
   },
 </code></pre>
 <p>変更後</p>
 <pre><code class="lang-javascript">  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-comment">// 初期表示時処理</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;created&apos;</span>)
     <span class="hljs-built_in">this</span>.search()
   },
 </code></pre>
-<p>   初期表示時にsearch()メソッドを呼び出すことによって、画面初期表示時に商品一覧の検索処理が行われるようになりました！</p>
-<p>  <img src="img/itemSearch2.jpg" alt="gras"></p>
-<p>  大分類、中分類を選択したり、検索ワードを入れて検索ボタンを押下すると、絞り込まれたリストが表示されます。</p>
-<h2 id="created_の処理についておさらい">3. created の処理についておさらい</h2>
-<p>  createdは画面初期表示時に走る処理です。正確に言うとインスタンスが生成され､データが初期化された後に実行されます。</p>
-<p>  初期表示時のデータ初期化後に実施したい処理がある場合はこの中に処理をかいていくことで実現することができます。</p>
-<p>  今回の場合は画面が初期表示される際に検索処理を行いたかったため、searchメソッドを呼び出すように変更しました。</p>
-<p>  createdは実際の開発でもよく使うライフサイクルフックの一つですので、ぜひ覚えておいてください！</p>
-<h2 id="mountedとの違い">4. mountedとの違い</h2>
-<p>  createdとmountedは共に画面初期表示時に走る処理です。では何が違うのでしょうか。</p>
-<p>  mountedは、インスタンスが DOM 要素にマウントされた後に実行される処理です。</p>
-<p>  getElementById等を使ってDOM要素にアクセスをしたい場合は、mountedに書くことが望ましいです。</p>
-<p>  createdの時にgetElementById(&apos;hoge&apos;)でDOMの要素を取得しようとしても取得することはできません。</p>
-<p>  mountedが実行されるタイミングではDOMの作成が完了しているのでDOMの要素が取得できるため</p>
-<p>  getElementByIdだけではなくDOMに対してアクセスを行う「jQuery」もmounted時点で使用可能となります。</p>
-<p>  mountedも、createdと並んでよく使うライフサイクルフックです。</p>
-<p>  初期表示処理はmountedでまとめて行う、という現場も多いです。(厳密に言うと、上記のように使い分けをすべきではあります。)</p>
+<p>初期表示時に search()メソッドを呼び出すことによって、画面初期表示時に商品一覧の検索処理が行われるようになりました！</p>
+<p><img src="img/itemSearch2.jpg" alt="gras"></p>
+<p>大分類、中分類を選択したり、検索ワードを入れて検索ボタンを押下すると、絞り込まれたリストが表示されます。</p>
+<h2 id="created_についておさらい">3. created についておさらい</h2>
+<p>created は画面初期表示時に走る処理です。正確に言うと Vue のインスタンスが生成され､データが初期化された後に実行されます。<br>初期表示時に実施したい処理がある場合はこの created に処理をかいていくことで実装することができます。<br>今回の場合は画面が初期表示される際に検索処理を行いたかったため、search メソッドを呼び出すように変更しました。<br>created は実際の開発でもよく使うライフサイクルフックの一つですので、ぜひ覚えておいてください！</p>
+<h2 id="mounted_との違い">4. mounted との違い</h2>
+<p>created と mounted は共に画面初期表示時に走る処理です。<br>mounted は、Vue インスタンスが DOM 要素にマウントされた後に実行される処理です。<br>getElementById 等を使って DOM 要素にアクセスをしたい場合は、mounted に書くことが望ましいです。<br>created の時に getElementById(&apos;hoge&apos;)で DOM の要素を取得しようとしても取得することはできません。<br>mounted が実行されるタイミングでは DOM の作成が完了しているので DOM の要素が取得できるため<br>mounted も、created と並んでよく使うライフサイクルフックです。<br>初期表示処理は mounted でまとめて行う、という現場もあります。</p>
 <hr>
-<p>  次の画面では、商品詳細画面の修正を行います！検索結果一覧に表示されている商品画像の何れかをクリックし、商品詳細画面へ移動しましょう！</p>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#コード修正(商品検索画面)">コード修正(商品検索画面)</a></p><li><a href="#修正対象のソース">1. 修正対象のソース</a></li><li><a href="#created_を使って画面初期表示時の処理を実装しよう。">2. created を使って画面初期表示時の処理を実装しよう。</a></li><li><a href="#created_の処理についておさらい">3. created の処理についておさらい</a></li><li><a href="#mountedとの違い">4. mountedとの違い</a></li></ul></div><a href="#修正対象のソース" id="goTop"><i class="fa fa-arrow-up"></i></a>
+<p>次の画面では、商品詳細画面の修正を行います！検索結果一覧に表示されている商品画像の何れかをクリックし、商品詳細画面へ移動しましょう！</p>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#コード修正(商品検索画面)">コード修正(商品検索画面)</a></p><li><a href="#修正対象のソース">1. 修正対象のソース</a></li><li><a href="#created_を使って画面初期表示時の処理を実装しよう。">2. created を使って画面初期表示時の処理を実装しよう。</a></li><li><a href="#created_についておさらい">3. created についておさらい</a></li><li><a href="#mounted_との違い">4. mounted との違い</a></li></ul></div><a href="#修正対象のソース" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -379,7 +360,7 @@ created を以下のように修正してください</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"コード修正(商品検索)","level":"1.6","depth":1,"next":{"title":"コード修正(商品情報詳細)","level":"1.7","depth":1,"path":"item_detail.md","ref":"item_detail.md","articles":[]},"previous":{"title":"コード修正(ヘッダー)","level":"1.5","depth":1,"path":"header.md","ref":"header.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"item_search.md","mtime":"2022-06-03T09:44:33.665Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-03T09:57:19.532Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"コード修正(商品検索)","level":"1.6","depth":1,"next":{"title":"コード修正(商品情報詳細)","level":"1.7","depth":1,"path":"item_detail.md","ref":"item_detail.md","articles":[]},"previous":{"title":"コード修正(ヘッダー)","level":"1.5","depth":1,"path":"header.md","ref":"header.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"item_search.md","mtime":"2022-06-08T12:05:34.071Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-08T12:07:30.931Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

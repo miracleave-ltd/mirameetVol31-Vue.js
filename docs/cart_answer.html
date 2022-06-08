@@ -291,82 +291,77 @@
 <p>答え合わせです！<br>正解は<strong>computed</strong>になります！
 早速、<strong>computed</strong>を使ってコード修正を行ってみましょう！</p>
 <h2 id="ソースコードの修正">2. ソースコードの修正</h2>
-<p>mounted と handleDelete から合計値取得処理を削除して、getTotal method を computed内に書き換えます。  </p>
+<p>mounted と handleDelete から合計値取得処理を削除して、getTotal method を computed 内に書き換えます。</p>
 <ul>
-<li>修正後<br>mounted<br>this.totalPrice = this.getTotal()を削除<pre><code class="lang-javascript">  mounted: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-      <span class="hljs-comment">// DOMのマウント終了後の処理</span>
-  },
-</code></pre>
-methods<br>getTotal()メソッドを削除。<pre><code class="lang-javascript">  getPrice (price, quantity) {
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Number</span>(price * quantity)
-  },
-  <span class="hljs-comment">/**
-   * 削除ボタン押下
-   */</span>
-  handleDelete (index) {
-    <span class="hljs-comment">// storeから該当商品を削除</span>
-    <span class="hljs-built_in">this</span>.$store.commit(<span class="hljs-string">&apos;deleteItem&apos;</span>, index)
-    <span class="hljs-comment">/** 合計値取得処理 */</span>
-    <span class="hljs-built_in">this</span>.totalPrice = <span class="hljs-built_in">this</span>.getTotal()
-  },
-</code></pre>
-computed<br>getTotal()処理を追加<pre><code class="lang-javascript">  computed: {
-      getItemList () {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.$store.getters.getItemList
-      },
-      getTotal () {
-      　　<span class="hljs-keyword">let</span> price = <span class="hljs-number">0</span>
-      　　<span class="hljs-built_in">this</span>.getItemList.forEach(<span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
-          　　price += element.price * element.quantity
-      　　})
-      　　<span class="hljs-keyword">return</span> price
-      }
-  },
-</code></pre>
-</li>
+<li>修正後<br>mounted<br>this.totalPrice = this.getTotal()を削除</li>
 </ul>
-<p>templateタグ内で合計額表示している箇所の「totalPrice」を<br>computed に定義した 「getTotal」 に書き換えます。</p>
+<pre><code class="lang-javascript">    mounted: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-comment">// DOMのマウント終了後の処理</span>
+    },
+</code></pre>
+<p>methods<br>getTotal()メソッドを削除。
+handleDelete メソッドから、this.totalPrice = this.getTotal()を削除する。</p>
+<pre><code class="lang-javascript">    getPrice (price, quantity) {
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Number</span>(price * quantity)
+    },
+    <span class="hljs-comment">/**
+     * 削除ボタン押下
+     */</span>
+    handleDelete (index) {
+      <span class="hljs-comment">// storeから該当商品を削除</span>
+      <span class="hljs-built_in">this</span>.$store.commit(<span class="hljs-string">&apos;deleteItem&apos;</span>, index)
+    },
+</code></pre>
+<p>computed<br>getTotal()処理を追加</p>
+<pre><code class="lang-javascript">    computed: {
+        getItemList () {
+          <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.$store.getters.getItemList
+        },
+        getTotal () {
+        　　<span class="hljs-keyword">let</span> price = <span class="hljs-number">0</span>
+        　  <span class="hljs-built_in">this</span>.getItemList.forEach(<span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
+            　　price += element.price * element.quantity
+        　　})
+        　　<span class="hljs-keyword">return</span> price
+        }
+    },
+</code></pre>
+<p>template タグ内で合計額表示している箇所の「totalPrice」を<br>computed に定義した 「getTotal」 に書き換えます。</p>
 <ul>
 <li>修正前</li>
 </ul>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">b-card-group</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">b-card</span>
-    <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;合計金額&quot;</span>
-    <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;max-width: 20rem;&quot;</span>
-    &gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">b-card</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;合計金額&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;max-width: 20rem;&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">b-card-text</span>&gt;</span>￥{{ totalPrice | money }}円<span class="hljs-tag">&lt;/<span class="hljs-name">b-card-text</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">b-button</span>
-        <span class="hljs-attr">variant</span>=<span class="hljs-string">&quot;primary&quot;</span>
-        @<span class="hljs-attr">click.stop</span>=<span class="hljs-string">&quot;handleSubmit&quot;</span>
-        <span class="hljs-attr">:disabled</span>=<span class="hljs-string">&quot;getItemList.length === 0&quot;</span>
+      <span class="hljs-attr">variant</span>=<span class="hljs-string">&quot;primary&quot;</span>
+      @<span class="hljs-attr">click.stop</span>=<span class="hljs-string">&quot;handleSubmit&quot;</span>
+      <span class="hljs-attr">:disabled</span>=<span class="hljs-string">&quot;getItemList.length === 0&quot;</span>
     &gt;</span>
-        商品を購入
+      商品を購入
     <span class="hljs-tag">&lt;/<span class="hljs-name">b-button</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">b-card</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">b-card</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">b-card-group</span>&gt;</span>
 </code></pre>
 <ul>
 <li>修正後</li>
 </ul>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">b-card-group</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">b-card</span>
-    <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;合計金額&quot;</span>
-    <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;max-width: 20rem;&quot;</span>
-    &gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">b-card</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;合計金額&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;max-width: 20rem;&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">b-card-text</span>&gt;</span>￥{{ getTotal | money }}円<span class="hljs-tag">&lt;/<span class="hljs-name">b-card-text</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">b-button</span>
-        <span class="hljs-attr">variant</span>=<span class="hljs-string">&quot;primary&quot;</span>
-        @<span class="hljs-attr">click.stop</span>=<span class="hljs-string">&quot;handleSubmit&quot;</span>
-        <span class="hljs-attr">:disabled</span>=<span class="hljs-string">&quot;getItemList.length === 0&quot;</span>
+      <span class="hljs-attr">variant</span>=<span class="hljs-string">&quot;primary&quot;</span>
+      @<span class="hljs-attr">click.stop</span>=<span class="hljs-string">&quot;handleSubmit&quot;</span>
+      <span class="hljs-attr">:disabled</span>=<span class="hljs-string">&quot;getItemList.length === 0&quot;</span>
     &gt;</span>
-        商品を購入
+      商品を購入
     <span class="hljs-tag">&lt;/<span class="hljs-name">b-button</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">b-card</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">b-card</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">b-card-group</span>&gt;</span>
 </code></pre>
 <h2 id="修正内容の確認">3. 修正内容の確認</h2>
 <p>ブラウザをリロードしてみて表示されている内容に問題がないか確認してみましょう。<br>機能としては、修正前と同じく、商品をカートから削除した際に合計額が再計算されます。<br><img src="img/cart_handson_1.jpg" alt="gras"><br><img src="img/cart_handson_2.jpg" alt="gras"><br><br>
-ソースコード上では色々な場所から同じ処理を呼び出す事がなくなり、保守の観点でも修正箇所が減って可読性も上がりました。<br>このように、プログラムの外部から見た動作を変えずにソースコードの内部構造を整理することを<strong>リファクタリング</strong>と言います。<br>実務においてもリファクタリングを行う場面は多々あると思います。ぜひ覚えておいてください！  </p>
+ソースコード上では mounted,handleDelete の複数箇所で毎回同じ処理を呼び出す事がなくなり、computed の処理一つに集約したことで修正を行う際にも修正箇所が減りました。<br>このように、プログラムの外部から見た動作を変えずにソースコードの内部構造を整理することを<strong>リファクタリング</strong>と言います。<br>実務においてもリファクタリングを行う場面は多々あると思います。ぜひ覚えておいてください！</p>
 <div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#コード修正(カート)_回答編">コード修正(カート) 回答編</a></p><li><a href="#修正対象のソース">1. 修正対象のソース</a></li><li><a href="#ソースコードの修正">2. ソースコードの修正</a></li><li><a href="#修正内容の確認">3. 修正内容の確認</a></li></ul></div><a href="#修正対象のソース" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
@@ -410,7 +405,7 @@ computed<br>getTotal()処理を追加<pre><code class="lang-javascript">  comput
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"コード修正(カート) 回答","level":"1.9","depth":1,"next":{"title":"local環境のCleanUp","level":"1.10","depth":1,"path":"cleanup.md","ref":"cleanup.md","articles":[]},"previous":{"title":"コード修正(カート)","level":"1.8","depth":1,"path":"cart.md","ref":"cart.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"cart_answer.md","mtime":"2022-06-03T09:44:33.619Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-03T09:57:19.532Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"コード修正(カート) 回答","level":"1.9","depth":1,"next":{"title":"local環境のCleanUp","level":"1.10","depth":1,"path":"cleanup.md","ref":"cleanup.md","articles":[]},"previous":{"title":"コード修正(カート)","level":"1.8","depth":1,"path":"cart.md","ref":"cart.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"cart_answer.md","mtime":"2022-06-08T11:18:14.505Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-08T12:07:30.931Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

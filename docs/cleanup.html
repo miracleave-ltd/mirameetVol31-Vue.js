@@ -281,32 +281,33 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="local環境のCleanUp"><a name="local環境のcleanup" class="plugin-anchor" href="#local環境のcleanup"><i class="fa fa-link" aria-hidden="true"></i></a>local環境のCleanUp</h1>
+                                <h1 id="local_環境の_CleanUp"><a name="local-環境の-cleanup" class="plugin-anchor" href="#local-環境の-cleanup"><i class="fa fa-link" aria-hidden="true"></i></a>local 環境の CleanUp</h1>
 <p>今回のハンズオンで使用した開発環境の削除を行います。</p>
 <p><img src="img/環境削除.png" alt="gras"></p>
 <ol>
-<li><p>コンテナの停止<br>以下コマンドでDockerコンテナを停止します。</p>
+<li>コンテナの停止<br>新しくターミナルを開き、以下コマンドで Docker コンテナを停止します。</li>
+</ol>
 <pre><code>docker-compose down
-</code></pre><p>コンテナが停止しているか確認します。</p>
+</code></pre><p>コンテナが停止しているか確認します。以下のコマンドを使用します。</p>
 <pre><code>docker-compose ps
 Name   Command   State   Ports
-------------------------------
-</code></pre></li>
-<li><p>イメージの削除</p>
-<pre><code>docker images                                                                                                                                   
-REPOSITORY                                                                   TAG                                                     IMAGE ID     
-CREATED         SIZE
-mirameetvol29_server                                                         latest                                                  ba2bac2d2844 
-4 days ago      197MB
-mirameetvol29_client                                                         latest                                                  05b82c10dc6e 
-6 days ago      111MB
-</code></pre><p>上記で確認できたIMAGE IDを利用して、ビルドされたイメージを削除します。</p>
+  ------------------------------
+</code></pre><ol>
+<li>イメージの削除</li>
+</ol>
+<pre><code>docker images
+REPOSITORY                                                                   TAG                                                     IMAGE ID
+  CREATED         SIZE
+mirameetvol29_server                                                         latest                                                  ba2bac2d2844
+  4 days ago      197MB
+mirameetvol29_client                                                         latest                                                  05b82c10dc6e
+  6 days ago      111MB
+</code></pre><p>上記で確認できた IMAGE ID を利用して、ビルドされたイメージを削除します。</p>
 <pre><code>docker rmi -f [IMAGE ID]
 </code></pre><p>次のようなメッセージが確認できたら、イメージが正常に削除出来ています。</p>
 <pre><code>Untagged: meetup_web...
-</code></pre></li>
-<li><p>フォルダの削除<br>最後にフォルダを削除します。  </p>
-</li>
+</code></pre><ol>
+<li>フォルダの削除<br>最後にフォルダを削除します。</li>
 </ol>
 <p>以上で本日のハンズオンは終了となります。皆様お疲れ様でした！</p>
 
@@ -348,7 +349,7 @@ mirameetvol29_client                                                         lat
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"local環境のCleanUp","level":"1.10","depth":1,"previous":{"title":"コード修正(カート) 回答","level":"1.9","depth":1,"path":"cart_answer.md","ref":"cart_answer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"cleanup.md","mtime":"2022-06-03T09:44:33.626Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-03T09:57:19.532Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"local環境のCleanUp","level":"1.10","depth":1,"previous":{"title":"コード修正(カート) 回答","level":"1.9","depth":1,"path":"cart_answer.md","ref":"cart_answer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"cleanup.md","mtime":"2022-06-08T11:21:25.010Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-08T12:07:30.931Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

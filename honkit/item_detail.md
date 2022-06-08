@@ -1,8 +1,9 @@
 # コード修正(商品情報詳細)
 
 ## 修正対象のソース
-* src/store/index.js
-* src/views/detailView.vue
+
+- src/store/index.js
+- src/views/detailView.vue
 
 続いては商品詳細画面です。
 
@@ -11,12 +12,13 @@
 ![gras](img/flow.png)
 
 ## 商品をカートに追加するための機能を実装しよう。
-* **src/store/index.js**&emsp;←&emsp;修正するファイル  
+
+- **src/store/index.js**&emsp;←&emsp;修正するファイル
 
 修正する前に一度、状況を確認してみましょう。  
 http://localhost:8080/detail?itemCode=2  
 商品の個数を選択して、カートに入れるボタンを押下してみてください。  
-「カートに追加しました。」というダイアログが出て、OKボタンを押下すると検索画面へ戻ります。  
+「カートに追加しました。」というダイアログが出て、OK ボタンを押下すると検索画面へ戻ります。  
 ![gras](img/detail_handson_1.jpg)
 では、この状態でカート画面へ遷移してみましょう。  
 http://localhost:8080/cart  
@@ -24,16 +26,17 @@ http://localhost:8080/cart
 ![gras](img/detail_handson_2.jpg)  
 確認できたところで、改めて修正を進めていきましょう。  
 <br/>
-今回はVuexというライブラリを使用して、商品をカートに入れます。
-"Vuex"とはVue.js アプリケーションのための 状態管理パターン + ライブラリです。
+今回は Vuex というライブラリを使用して、商品をカートに入れます。
+"Vuex"とは Vue.js アプリケーションのための 状態管理パターン + ライブラリです。
 
-https://vuex.vuejs.org/ja/ (Vue.js公式サイトより)
+https://vuex.vuejs.org/ja/ (Vue.js 公式サイトより)
 
- 
 では、実際に修正していきましょう。今回修正する箇所は"src/store/index.js"の"mutations"の箇所です。  
-mutationsにカートに入れるボタンを押下した際に、商品情報を保持するための処理を追加します。 
+mutations にカートに入れるボタンを押下した際に、商品情報を保持するための処理を追加します。  
+src/store フォルダ内の index.js を開き、「mutations」を検索します。
 
 変更前
+
 ```javascript
   mutations: {
     // 商品削除
@@ -50,7 +53,8 @@ mutationsにカートに入れるボタンを押下した際に、商品情報�
 
 変更後
 
-18行目のmutationsの下に商品追加のソースを追加してください。
+mutations の中に商品追加の処理「pushItem」を追加してください。
+
 ```javascript
   mutations: {
     // 商品追加
@@ -70,20 +74,18 @@ mutationsにカートに入れるボタンを押下した際に、商品情報�
   },
 ```
 
-pushItemはカートボタンをクリック時に使用し、これで商品情報を保持させることができます。  
-この処理は、この後detailView.vueの修正でも使用します。  
-他にも商品削除のdeleteItemなどありますが、こちらは次の章のカート画面上で使用します。  
-商品をカートの保持情報から削除するための処理になります。
-
-
+pushItem は渡された引数を、itemList という名前のリスト変数に追加します。これで商品情報を保持させることができます。
 
 ## カートに入れる機能を追加しよう。
-* **src/views/detailView.vue**&emsp;←&emsp;今回修正するファイル
+
+- **src/views/detailView.vue**&emsp;←&emsp;今回修正するファイル
 
 ここでは、商品検索で選択した商品情報をカートに入れる処理を追加します。
-methodsの中にある「additem」の処理を下記のように修正してみましょう。
+methods の中にある「additem」の処理を下記のように修正してみましょう。  
+Ctrl+P(Mac の場合 Command+P)で、「detailView.vue」ファイルを開き、「addItem」を検索します。
 
 変更前
+
 ```javascript
 addItem () {
   // storeに保存後ダイアログ表示して検索画面へ戻る
@@ -98,9 +100,11 @@ addItem () {
   })
 }
 ```
+
 変更後
 
-104行目の addItemの下に商品情報を保持するためのソースを追加してください。
+addItem の下に商品情報を保持するためのソースを追加してください。
+
 ```javascript
 addItem () {
   // storeに保存後ダイアログ表示して検索画面に戻る
@@ -124,26 +128,28 @@ addItem () {
   })
 }
 ```
-まず画面に表示されている商品のパラメーターをオブジェクトparamに設定します。それぞれ商品名・商品説明・値段・数量・商品画像です。
 
-次に先ほど追加した「pushItem」を呼び出して商品情報をstoreに追加します。  
-書き方としては、this.$store.commit('呼び出す処理名',処理に渡す引数)でstoreのstateの値を変更します。  
-第一引数をstore/index.jsのmutationsに追加したpushItemにします。  
-第二引数は商品情報をもった変数paramにすることで、  
-store/index.jsのstateのitemListに商品情報を追加します。
+まず画面に表示されている商品のパラメーターをオブジェクト param に設定します。それぞれ商品名・商品説明・値段・数量・商品画像です。
 
-カート画面ではstoreの保持しているitemListを、gettersを使用することでカート画面上に表示させています。
+次に先ほど追加した「pushItem」を呼び出して商品情報を store に追加します。  
+書き方としては、this.$store.commit('呼び出す処理名',処理に渡す引数)で store の state の値を変更します。  
+第一引数を store/index.js の mutations に追加した pushItem にします。  
+第二引数は商品情報をもった変数 param にすることで、  
+store/index.js の state の itemList に商品情報を追加します。
+
+カート画面では store の保持している itemList を、getters を使用することでカート画面上に表示させています。
 
 ## 動作確認
+
 動作確認をしてみましょう。
-プルダウンで任意の商品数を選択肢し、商品を購入のボタンをクリックしてください。
+商品詳細画面内の個数プルダウンで任意の商品数を選択肢し、商品を購入のボタンをクリックしてください。
 
 下記のように完了のダイアログが表示され検索画面に遷移します。  
 ![gras](img/GoCart.png)  
 商品がカートに入っているか確認してみましょう。  
 画面右上のショッピングカートのアイコンをクリックすることで、カート画面へ遷移します。  
 カートに入れた商品が表示されることがわかるかと思います。  
-![gras](img/detail_handson_3.jpg)  
+![gras](img/detail_handson_3.jpg)
 
-商品を削除するのにもVuexが使用されております。
-mutationsに既にあったdeleteItemとclearItemです。deleteItemはカートに入った商品を削除する時に、clearItemは商品を注文した時に使用します。
+次の手順では、今開いたカート画面のソースコードのリファクタリングを行います！  
+商品を何種類かカートへ追加し、カート画面へ遷移しましょう！
