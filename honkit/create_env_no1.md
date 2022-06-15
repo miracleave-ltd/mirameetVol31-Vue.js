@@ -65,6 +65,9 @@ docker-compose up -d --build
 dockerが起動しているか以下のコマンドで確認してみましょう。
 ```
 docker-compose ps
+```
+
+```
               Name                            Command               State           Ports
 --------------------------------------------------------------------------------------------------
 mirameet_vol30_20220314_client_1   docker-entrypoint.sh node        Up      0.0.0.0:8080->8080/tcp
