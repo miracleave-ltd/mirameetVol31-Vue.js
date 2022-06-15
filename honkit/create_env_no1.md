@@ -6,7 +6,7 @@ Djangoフレームワークを用いてAPIサーバーを準備します。
 
 ![gras](img/環境構築.png)
 
-## 1. vscodeの拡張機能の確認  
+## vscodeの拡張機能の確認  
 vscodeの拡張機能で、「ESLint」「Vetur」が入っているか確認してください。  
 <br/>
 1-1.
@@ -23,19 +23,19 @@ vscodeの拡張機能で、「ESLint」「Vetur」が入っているか確認し
 <br/>
 インストールした場合は、vscodeを一度閉じて、再起動してください。
 
-## 2. githubリポジトリにアクセス  
+## githubリポジトリにアクセス  
 2-1.
 以下リンクよりデモアプリのあるGithubリポジトリにアクセスします。  
 URL:https://github.com/miracleave-ltd/mirameetVol31-Vue.js
 ![gras](img/github_toppage.png)
 
 
-## 3. ソースコードダウンロード  
+## ソースコードダウンロード  
 3-1.  
 Codeボタンより、Zipファイルをダウンロードします。
 ![gras](img/github_zip.png)
 
-## 4. ソースコード展開  
+## ソースコード展開  
 4-1.  
 ダウンロードしたZipファイルを任意のフォルダに展開してください。  
 ※次の手順を進めるに当たり、展開されたフォルダをVSCodeで開くようお願いします。  
@@ -45,7 +45,7 @@ Codeボタンより、Zipファイルをダウンロードします。
 client > ecsiteを選択して開く  
 ![gras](img/vscode_open_2.jpg)
 
-## 5. サーバーの起動  
+## サーバーの起動  
 一度ローカルでサーバーを立ち上げましょう。  
 5-1. Docker Desktopの起動確認  
 docker Desktopが起動できていることを確認します

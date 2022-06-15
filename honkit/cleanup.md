@@ -4,8 +4,8 @@
 
 ![gras](img/環境削除.png)
 
-1. コンテナの停止  
-   新しくターミナルを開き、以下コマンドで Docker コンテナを停止します。
+## コンテナの停止  
+新しくターミナルを開き、以下コマンドで Docker コンテナを停止します。
 
 ```
 docker-compose down
@@ -15,14 +15,20 @@ docker-compose down
 
 ```
 docker-compose ps
+```
+以下の状態になれば、コンテナが停止しています。
+```
 Name   Command   State   Ports
   ------------------------------
 ```
 
-2. イメージの削除
+## イメージの削除
+以下コマンドを使用して、IMAGE IDを確認します。
 
 ```
 docker images
+```
+```
 REPOSITORY                                                                   TAG                                                     IMAGE ID
   CREATED         SIZE
 mirameetvol29_server                                                         latest                                                  ba2bac2d2844
@@ -43,7 +49,7 @@ docker rmi -f [IMAGE ID]
 Untagged: meetup_web...
 ```
 
-3. フォルダの削除  
-   最後にフォルダを削除します。
+## フォルダの削除  
+最後にフォルダを削除します。
 
 以上で本日のハンズオンは終了となります。皆様お疲れ様でした！
