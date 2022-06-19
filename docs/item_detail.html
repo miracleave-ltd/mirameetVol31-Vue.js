@@ -343,42 +343,42 @@
 <p>ここでは、商品検索で選択した商品情報をカートに入れる処理を追加します。
 methods の中にある「additem」の処理を下記のように修正してみましょう。<br>Ctrl+P(Mac の場合 Command+P)で、「detailView.vue」ファイルを開き、「addItem」を検索します。</p>
 <p>変更前</p>
-<pre><code class="lang-javascript">addItem () {
-  <span class="hljs-comment">// storeに保存後ダイアログ表示して検索画面へ戻る</span>
-  <span class="hljs-built_in">this</span>.$swal({
-    <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;完了&apos;</span>,
-    <span class="hljs-attr">icon</span>: <span class="hljs-string">&apos;success&apos;</span>,
-    <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;カートへ追加しました。&apos;</span>,
-    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;success&apos;</span>,
-    <span class="hljs-attr">confirmButtonText</span>: <span class="hljs-string">&apos;OK&apos;</span>
-  }).then(<span class="hljs-function">(<span class="hljs-params">info</span>) =&gt;</span> {
-    <span class="hljs-built_in">this</span>.$router.push({ <span class="hljs-attr">path</span>: <span class="hljs-string">&apos;/&apos;</span> })
-  })
-}
+<pre><code class="lang-javascript">    addItem () {
+      <span class="hljs-comment">// storeに保存後ダイアログ表示して検索画面へ戻る</span>
+      <span class="hljs-built_in">this</span>.$swal({
+        <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;完了&apos;</span>,
+        <span class="hljs-attr">icon</span>: <span class="hljs-string">&apos;success&apos;</span>,
+        <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;カートへ追加しました。&apos;</span>,
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;success&apos;</span>,
+        <span class="hljs-attr">confirmButtonText</span>: <span class="hljs-string">&apos;OK&apos;</span>
+      }).then(<span class="hljs-function">(<span class="hljs-params">info</span>) =&gt;</span> {
+        <span class="hljs-built_in">this</span>.$router.push({ <span class="hljs-attr">path</span>: <span class="hljs-string">&apos;/&apos;</span> })
+      })
+    }
 </code></pre>
 <p>変更後</p>
 <p>addItem の下に商品情報を保持するためのソースを追加してください。</p>
-<pre><code class="lang-javascript">addItem () {
-  <span class="hljs-comment">// storeに保存後ダイアログ表示して検索画面に戻る</span>
-  <span class="hljs-keyword">const</span> param = {
-    <span class="hljs-attr">name</span>: <span class="hljs-built_in">this</span>.productName,
-    <span class="hljs-attr">description</span>: <span class="hljs-built_in">this</span>.description,
-    <span class="hljs-attr">price</span>: <span class="hljs-built_in">this</span>.price,
-    <span class="hljs-attr">quantity</span>: <span class="hljs-built_in">Number</span>(<span class="hljs-built_in">this</span>.quantity),
-    <span class="hljs-attr">imageUrl</span>: <span class="hljs-built_in">this</span>.img <span class="hljs-comment">// 商品画像</span>
-  }
-  <span class="hljs-built_in">this</span>.$store.commit(<span class="hljs-string">&apos;pushItem&apos;</span>, param)
-  <span class="hljs-comment">// storeに保存後ダイアログ表示して検索画面へ戻る</span>
-  <span class="hljs-built_in">this</span>.$swal({
-    <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;完了&apos;</span>,
-    <span class="hljs-attr">icon</span>: <span class="hljs-string">&apos;success&apos;</span>,
-    <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;カートへ追加しました。&apos;</span>,
-    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;success&apos;</span>,
-    <span class="hljs-attr">confirmButtonText</span>: <span class="hljs-string">&apos;OK&apos;</span>
-  }).then(<span class="hljs-function">(<span class="hljs-params">info</span>) =&gt;</span> {
-    <span class="hljs-built_in">this</span>.$router.push({ <span class="hljs-attr">path</span>: <span class="hljs-string">&apos;/&apos;</span> })
-  })
-}
+<pre><code class="lang-javascript">    addItem () {
+      <span class="hljs-comment">// storeに保存後ダイアログ表示して検索画面に戻る</span>
+      <span class="hljs-keyword">const</span> param = {
+        <span class="hljs-attr">name</span>: <span class="hljs-built_in">this</span>.productName,
+        <span class="hljs-attr">description</span>: <span class="hljs-built_in">this</span>.description,
+        <span class="hljs-attr">price</span>: <span class="hljs-built_in">this</span>.price,
+        <span class="hljs-attr">quantity</span>: <span class="hljs-built_in">Number</span>(<span class="hljs-built_in">this</span>.quantity),
+        <span class="hljs-attr">imageUrl</span>: <span class="hljs-built_in">this</span>.img <span class="hljs-comment">// 商品画像</span>
+      }
+      <span class="hljs-built_in">this</span>.$store.commit(<span class="hljs-string">&apos;pushItem&apos;</span>, param)
+      <span class="hljs-comment">// storeに保存後ダイアログ表示して検索画面へ戻る</span>
+      <span class="hljs-built_in">this</span>.$swal({
+        <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;完了&apos;</span>,
+        <span class="hljs-attr">icon</span>: <span class="hljs-string">&apos;success&apos;</span>,
+        <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;カートへ追加しました。&apos;</span>,
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;success&apos;</span>,
+        <span class="hljs-attr">confirmButtonText</span>: <span class="hljs-string">&apos;OK&apos;</span>
+      }).then(<span class="hljs-function">(<span class="hljs-params">info</span>) =&gt;</span> {
+        <span class="hljs-built_in">this</span>.$router.push({ <span class="hljs-attr">path</span>: <span class="hljs-string">&apos;/&apos;</span> })
+      })
+    }
 </code></pre>
 <p>まず画面に表示されている商品のパラメーターをオブジェクト param に設定します。それぞれ商品名・商品説明・値段・数量・商品画像です。</p>
 <p>次に先ほど追加した「pushItem」を呼び出して商品情報を store に追加します。<br>書き方としては、this.$store.commit(&apos;呼び出す処理名&apos;,処理に渡す引数)で store の state の値を変更します。<br>第一引数を store/index.js の mutations に追加した pushItem にします。<br>第二引数は商品情報をもった変数 param にすることで、<br>store/index.js の state の itemList に商品情報を追加します。</p>
@@ -431,7 +431,7 @@ methods の中にある「additem」の処理を下記のように修正して�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"コード修正(商品情報詳細)","level":"1.7","depth":1,"next":{"title":"コード修正(カート)","level":"1.8","depth":1,"path":"cart.md","ref":"cart.md","articles":[]},"previous":{"title":"コード修正(商品検索)","level":"1.6","depth":1,"path":"item_search.md","ref":"item_search.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"item_detail.md","mtime":"2022-06-16T09:21:01.003Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-16T09:24:08.459Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"コード修正(商品情報詳細)","level":"1.7","depth":1,"next":{"title":"コード修正(カート)","level":"1.8","depth":1,"path":"cart.md","ref":"cart.md","articles":[]},"previous":{"title":"コード修正(商品検索)","level":"1.6","depth":1,"path":"item_search.md","ref":"item_search.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"item_detail.md","mtime":"2022-06-19T06:17:36.775Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-19T06:22:50.544Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

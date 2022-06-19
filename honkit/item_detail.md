@@ -87,18 +87,18 @@ Ctrl+P(Mac の場合 Command+P)で、「detailView.vue」ファイルを開き�
 変更前
 
 ```javascript
-addItem () {
-  // storeに保存後ダイアログ表示して検索画面へ戻る
-  this.$swal({
-    title: '完了',
-    icon: 'success',
-    text: 'カートへ追加しました。',
-    type: 'success',
-    confirmButtonText: 'OK'
-  }).then((info) => {
-    this.$router.push({ path: '/' })
-  })
-}
+    addItem () {
+      // storeに保存後ダイアログ表示して検索画面へ戻る
+      this.$swal({
+        title: '完了',
+        icon: 'success',
+        text: 'カートへ追加しました。',
+        type: 'success',
+        confirmButtonText: 'OK'
+      }).then((info) => {
+        this.$router.push({ path: '/' })
+      })
+    }
 ```
 
 変更後
@@ -106,27 +106,27 @@ addItem () {
 addItem の下に商品情報を保持するためのソースを追加してください。
 
 ```javascript
-addItem () {
-  // storeに保存後ダイアログ表示して検索画面に戻る
-  const param = {
-    name: this.productName,
-    description: this.description,
-    price: this.price,
-    quantity: Number(this.quantity),
-    imageUrl: this.img // 商品画像
-  }
-  this.$store.commit('pushItem', param)
-  // storeに保存後ダイアログ表示して検索画面へ戻る
-  this.$swal({
-    title: '完了',
-    icon: 'success',
-    text: 'カートへ追加しました。',
-    type: 'success',
-    confirmButtonText: 'OK'
-  }).then((info) => {
-    this.$router.push({ path: '/' })
-  })
-}
+    addItem () {
+      // storeに保存後ダイアログ表示して検索画面に戻る
+      const param = {
+        name: this.productName,
+        description: this.description,
+        price: this.price,
+        quantity: Number(this.quantity),
+        imageUrl: this.img // 商品画像
+      }
+      this.$store.commit('pushItem', param)
+      // storeに保存後ダイアログ表示して検索画面へ戻る
+      this.$swal({
+        title: '完了',
+        icon: 'success',
+        text: 'カートへ追加しました。',
+        type: 'success',
+        confirmButtonText: 'OK'
+      }).then((info) => {
+        this.$router.push({ path: '/' })
+      })
+    }
 ```
 
 まず画面に表示されている商品のパラメーターをオブジェクト param に設定します。それぞれ商品名・商品説明・値段・数量・商品画像です。

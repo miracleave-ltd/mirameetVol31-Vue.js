@@ -46,7 +46,7 @@ watch とは、特定のデータまたは computed プロパティの状態を�
    filterdMediumCategory を以下のように修正してください
 
 ```javascript
-  filterdMediumCategory: function () {
+    filterdMediumCategory: function () {
       if (this.lergeCategoryCode === '') {
         return this.mediumCategoryList
       }
