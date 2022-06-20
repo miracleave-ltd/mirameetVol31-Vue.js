@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import itemSearch from '../views/ItemSearch.vue'
+import ItemSearch from '../views/ItemSearch.vue'
 import Cart from '../views/Cart.vue'
 import DetailView from '../views/DetailView.vue'
 
@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: itemSearch
+    component: ItemSearch
   },
   {
     path: '/cart',
