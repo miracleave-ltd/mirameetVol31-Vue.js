@@ -86,11 +86,9 @@ export default {
      * 商品情報取得
      */
     async getDetailInfo () {
-      console.log('getDetailInfo')
       // API呼び出し
       // 呼び出し先エンドポイント, リクエストパラメータ
       const response = await this.axios.get(`detail/${this.itemCode}`)
-      console.log('response', response)
       // 画面にレスポンス内容を反映する
       const data = response.data
       this.productName = data.name
