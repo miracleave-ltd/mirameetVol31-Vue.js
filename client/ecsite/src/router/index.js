@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import itemSearch from '../views/itemSearch.vue'
+import itemSearch from '../views/ItemSearch.vue'
 import Cart from '../views/Cart.vue'
-import DetailView from '../views/detailView.vue'
+import DetailView from '../views/DetailView.vue'
 
 Vue.use(VueRouter)
 
