@@ -5,7 +5,7 @@
 
 ## 修正対象のソース
 
-- **src\views\temSearch.vue**
+- **src\views\ItemSearch.vue**
 
 修正する前に一度、状況を確認してみましょう。
 
