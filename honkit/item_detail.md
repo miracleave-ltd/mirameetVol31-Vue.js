@@ -74,7 +74,21 @@ Ctrl+P(Mac の場合 Command+P)で、「detailView.vue」ファイルを開き�
 修正前  
 ![gras](img/befFix_additem.png)
 
-修正後
+修正後  
+```javascript
+    addItem () {
+      // storeに保存後ダイアログ表示して検索画面へ戻る
+      this.$swal({
+        title: '完了',
+        icon: 'success',
+        text: 'カートへ追加しました。',
+        type: 'success',
+        confirmButtonText: 'OK'
+      }).then((info) => {
+        this.$router.push({ path: '/' })
+      })
+    }
+```
 
 addItem の下に商品情報を保持するためのソースを追加してください。
 

@@ -33,7 +33,7 @@ vue/cli のインストール終了後に、続いて、以下コマンドで no
 (通信環境によってしばらく時間がかかります。)
 
 ```
-npm install
+npm install --save --legacy-peer-deps
 ```
 
 ## Vue アプリケーションサーバーをたてる
