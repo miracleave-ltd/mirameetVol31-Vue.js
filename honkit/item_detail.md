@@ -69,7 +69,7 @@ pushItem は渡された引数を、itemList という名前のリスト変数�
 
 ここでは、商品検索で選択した商品情報をカートに入れる処理を追加します。
 methods の中にある「additem」の処理を下記のように修正してみましょう。  
-Ctrl+P(Mac の場合 Command+P)で、「detailView.vue」ファイルを開き、「addItem」を検索します。
+Ctrl+P(Mac の場合 Command+P)で、「DetailView.vue」ファイルを開き、「addItem」を検索します。
 
 修正前  
 ![gras](img/befFix_additem.png)
