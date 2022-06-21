@@ -5,7 +5,7 @@
 
 ## 修正対象のソース
 
-- **src\views\itemSearch.vue**
+- **src\views\ItemSearch.vue**
 
 修正する前に一度、状況を確認してみましょう。
 
@@ -24,15 +24,10 @@ Ctrl ＋ F(MAC の場合 Command+F) で検索欄を表示し、「created」内�
 今回は、クエリパラメータを受け取って検索処理を行う「search()」を初期表示時に実行するようにしてみます。  
 created を以下のように修正してください
 
-変更前
+修正前  
+![gras](img/befFix_itemSerach.png)
 
-```javascript
-  created: function () {
-    // 初期表示時処理
-  },
-```
-
-変更後
+修正後
 
 ```javascript
   created: function () {

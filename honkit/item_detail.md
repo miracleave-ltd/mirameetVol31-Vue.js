@@ -3,7 +3,7 @@
 ## 修正対象のソース
 
 - src/store/index.js
-- src/views/detailView.vue
+- src/views/DetailView.vue
 
 続いては商品詳細画面です。
 
@@ -35,23 +35,10 @@ https://vuex.vuejs.org/ja/ (Vue.js 公式サイトより)
 mutations にカートに入れるボタンを押下した際に、商品情報を保持するための処理を追加します。  
 src/store フォルダ内の index.js を開き、「mutations」を検索します。
 
-変更前
+修正前  
+![gras](img/befFix_VuexIndex.png)
 
-```javascript
-  mutations: {
-    // 商品削除
-    deleteItem (state, item) {
-      // 引数で渡された行を削除
-      state.itemList.splice(item, 1)
-    },
-    // 商品リスト初期化
-    clearItem (state) {
-      state.itemList = []
-    }
-  }
-```
-
-変更後
+修正後
 
 mutations の中に商品追加の処理「pushItem」を追加してください。
 
@@ -78,55 +65,41 @@ pushItem は渡された引数を、itemList という名前のリスト変数�
 
 ## カートに入れる機能を追加しよう。
 
-- **src/views/detailView.vue**&emsp;←&emsp;今回修正するファイル
+- **src/views/DetailView.vue**&emsp;←&emsp;今回修正するファイル
 
 ここでは、商品検索で選択した商品情報をカートに入れる処理を追加します。
 methods の中にある「additem」の処理を下記のように修正してみましょう。  
 Ctrl+P(Mac の場合 Command+P)で、「detailView.vue」ファイルを開き、「addItem」を検索します。
 
-変更前
+修正前  
+![gras](img/befFix_additem.png)
 
-```javascript
-addItem () {
-  // storeに保存後ダイアログ表示して検索画面へ戻る
-  this.$swal({
-    title: '完了',
-    icon: 'success',
-    text: 'カートへ追加しました。',
-    type: 'success',
-    confirmButtonText: 'OK'
-  }).then((info) => {
-    this.$router.push({ path: '/' })
-  })
-}
-```
-
-変更後
+修正後
 
 addItem の下に商品情報を保持するためのソースを追加してください。
 
 ```javascript
-addItem () {
-  // storeに保存後ダイアログ表示して検索画面に戻る
-  const param = {
-    name: this.productName,
-    description: this.description,
-    price: this.price,
-    quantity: Number(this.quantity),
-    imageUrl: this.img // 商品画像
-  }
-  this.$store.commit('pushItem', param)
-  // storeに保存後ダイアログ表示して検索画面へ戻る
-  this.$swal({
-    title: '完了',
-    icon: 'success',
-    text: 'カートへ追加しました。',
-    type: 'success',
-    confirmButtonText: 'OK'
-  }).then((info) => {
-    this.$router.push({ path: '/' })
-  })
-}
+    addItem () {
+      // storeに保存後ダイアログ表示して検索画面に戻る
+      const param = {
+        name: this.productName,
+        description: this.description,
+        price: this.price,
+        quantity: Number(this.quantity),
+        imageUrl: this.img // 商品画像
+      }
+      this.$store.commit('pushItem', param)
+      // storeに保存後ダイアログ表示して検索画面へ戻る
+      this.$swal({
+        title: '完了',
+        icon: 'success',
+        text: 'カートへ追加しました。',
+        type: 'success',
+        confirmButtonText: 'OK'
+      }).then((info) => {
+        this.$router.push({ path: '/' })
+      })
+    }
 ```
 
 まず画面に表示されている商品のパラメーターをオブジェクト param に設定します。それぞれ商品名・商品説明・値段・数量・商品画像です。

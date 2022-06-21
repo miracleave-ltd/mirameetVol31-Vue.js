@@ -44,21 +44,7 @@ src\App.vue にヘッダー用のコンポーネントをインポートし、�
 <br/>
 修正前
 
-```javascript
-<template>
-  <div id="app">
-    <router-view class="appView"/>
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'App',
-  components: {
-  }
-}
-</script>
-```
+![gras](img/befFix_appVue.png)
 
 修正後
 
@@ -106,9 +92,9 @@ export default {
 ```javascript
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import itemSearch from '../views/itemSearch.vue'
+import ItemSearch from '../views/ItemSearch.vue'
 import Cart from '../views/Cart.vue'
-import DetailView from '../views/detailView.vue'
+import DetailView from '../views/DetailView.vue'
 
 Vue.use(VueRouter)
 
@@ -116,7 +102,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: itemSearch
+    component: ItemSearch
   },
   {
     path: '/cart',

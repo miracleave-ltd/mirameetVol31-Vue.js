@@ -306,20 +306,7 @@
 </ol>
 <p><br>
 修正前</p>
-<pre><code class="lang-javascript">&lt;template&gt;
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">router-view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;appView&quot;</span>/&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-&lt;/template&gt;
-
-<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;App&apos;</span>,
-  <span class="hljs-attr">components</span>: {
-  }
-}
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
-</code></pre>
+<p><img src="img/befFix_appVue.png" alt="gras"></p>
 <p>修正後</p>
 <pre><code class="lang-javascript">&lt;template&gt;
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span>
@@ -356,9 +343,9 @@
 <p> src\router\index.js内に、アプリケーションのルーティングを記述しています。</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;vue&apos;</span>
 <span class="hljs-keyword">import</span> VueRouter <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;vue-router&apos;</span>
-<span class="hljs-keyword">import</span> itemSearch <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../views/itemSearch.vue&apos;</span>
+<span class="hljs-keyword">import</span> ItemSearch <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../views/ItemSearch.vue&apos;</span>
 <span class="hljs-keyword">import</span> Cart <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../views/Cart.vue&apos;</span>
-<span class="hljs-keyword">import</span> DetailView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../views/detailView.vue&apos;</span>
+<span class="hljs-keyword">import</span> DetailView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../views/DetailView.vue&apos;</span>
 
 Vue.use(VueRouter)
 
@@ -366,7 +353,7 @@ Vue.use(VueRouter)
   {
     <span class="hljs-attr">path</span>: <span class="hljs-string">&apos;/&apos;</span>,
     <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;home&apos;</span>,
-    <span class="hljs-attr">component</span>: itemSearch
+    <span class="hljs-attr">component</span>: ItemSearch
   },
   {
     <span class="hljs-attr">path</span>: <span class="hljs-string">&apos;/cart&apos;</span>,
@@ -446,7 +433,7 @@ Vue.use(VueRouter)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"コード修正(App.vue)","level":"1.4","depth":1,"next":{"title":"コード修正(ヘッダー)","level":"1.5","depth":1,"path":"header.md","ref":"header.md","articles":[]},"previous":{"title":"環境構築 2","level":"1.3","depth":1,"path":"create_env_no2.md","ref":"create_env_no2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"component.md","mtime":"2022-06-15T10:59:50.000Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-15T11:37:37.153Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"コード修正(App.vue)","level":"1.4","depth":1,"next":{"title":"コード修正(ヘッダー)","level":"1.5","depth":1,"path":"header.md","ref":"header.md","articles":[]},"previous":{"title":"環境構築 2","level":"1.3","depth":1,"path":"create_env_no2.md","ref":"create_env_no2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"component.md","mtime":"2022-06-21T10:34:50.055Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-21T10:41:07.337Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
