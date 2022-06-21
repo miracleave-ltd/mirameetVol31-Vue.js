@@ -64,7 +64,7 @@ template タグ内で合計額表示している箇所の「totalPrice」を
 computed に定義した 「getTotal」 に書き換えます。
 
 - 修正前  
-![gras](img/befFix_additem.png)
+![gras](img/befFix_cart.png)
 
 - 修正後
 
