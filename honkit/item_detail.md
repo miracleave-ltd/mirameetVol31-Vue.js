@@ -3,7 +3,7 @@
 ## 修正対象のソース
 
 - src/store/index.js
-- src/views/detailView.vue
+- src/views/DetailView.vue
 
 続いては商品詳細画面です。
 
@@ -78,7 +78,7 @@ pushItem は渡された引数を、itemList という名前のリスト変数�
 
 ## カートに入れる機能を追加しよう。
 
-- **src/views/detailView.vue**&emsp;←&emsp;今回修正するファイル
+- **src/views/DetailView.vue**&emsp;←&emsp;今回修正するファイル
 
 ここでは、商品検索で選択した商品情報をカートに入れる処理を追加します。
 methods の中にある「additem」の処理を下記のように修正してみましょう。  
