@@ -290,7 +290,7 @@
 <li>src/views/DetailView.vue</li>
 </ul>
 <p>続いては商品詳細画面です。</p>
-<p>この画面は、検索画面で選択した商品の詳細情報が掲載されています。またこの画面でポイントとなるのは、<strong>商品をカートに入れる機能</strong>です。</p>
+<p>この画面は、検索画面で選択した商品の詳細情報が掲載されています。<br>またこの画面でポイントとなるのは、<strong>商品をカートに入れる機能</strong>です。</p>
 <p><img src="img/flow.png" alt="gras"></p>
 <h2 id="商品をカートに追加するための機能を実装しよう。">2. 商品をカートに追加するための機能を実装しよう。</h2>
 <ul>
@@ -299,8 +299,7 @@
 <p>修正する前に一度、状況を確認してみましょう。<br><a href="http://localhost:8080/detail?itemCode=2" target="_blank">http://localhost:8080/detail?itemCode=2</a><br>商品の個数を選択して、カートに入れるボタンを押下してみてください。<br>「カートに追加しました。」というダイアログが出て、OK ボタンを押下すると検索画面へ戻ります。<br><img src="img/detail_handson_1.jpg" alt="gras">
 では、この状態でカート画面へ遷移してみましょう。<br><a href="http://localhost:8080/cart" target="_blank">http://localhost:8080/cart</a><br>先ほどカートに商品を追加したはずですが、カート画面を開いてみても、何も表示されません。
 <img src="img/detail_handson_2.jpg" alt="gras"><br>確認できたところで、改めて修正を進めていきましょう。<br><br>
-今回は Vuex というライブラリを使用して、商品をカートに入れます。
-&quot;Vuex&quot;とは Vue.js アプリケーションのための 状態管理パターン + ライブラリです。</p>
+今回は Vuex というライブラリを使用して、商品をカートに入れます。<br>&quot;Vuex&quot;とは Vue.js アプリケーションのための 状態管理パターン + ライブラリです。</p>
 <p><a href="https://vuex.vuejs.org/ja/" target="_blank">https://vuex.vuejs.org/ja/</a> (Vue.js 公式サイトより)</p>
 <p>では、実際に修正していきましょう。今回修正する箇所は&quot;src/store/index.js&quot;の&quot;mutations&quot;の箇所です。<br>mutations にカートに入れるボタンを押下した際に、商品情報を保持するための処理を追加します。<br>src/store フォルダ内の index.js を開き、「mutations」を検索します。</p>
 <p>修正前<br><img src="img/befFix_VuexIndex.png" alt="gras"></p>
@@ -323,13 +322,12 @@
     }
   },
 </code></pre>
-<p>pushItem は渡された引数を、itemList という名前のリスト変数に追加します。これで商品情報を保持させることができます。</p>
+<p>pushItem は渡された引数を、itemList という名前のリスト変数に追加します。<br>これで商品情報を保持させることができます。</p>
 <h2 id="カートに入れる機能を追加しよう。">3. カートに入れる機能を追加しよう。</h2>
 <ul>
 <li><strong>src/views/DetailView.vue</strong> ← 今回修正するファイル</li>
 </ul>
-<p>ここでは、商品検索で選択した商品情報をカートに入れる処理を追加します。
-methods の中にある「additem」の処理を下記のように修正してみましょう。<br>Ctrl+P(Mac の場合 Command+P)で、「DetailView.vue」ファイルを開き、「addItem」を検索します。</p>
+<p>ここでは、商品検索で選択した商品情報をカートに入れる処理を追加します。<br>methods の中にある「additem」の処理を下記のように修正してみましょう。<br>Ctrl+P(Mac の場合 Command+P)で、「DetailView.vue」ファイルを開き、「addItem」を検索します。</p>
 <p>修正前<br><img src="img/befFix_additem.png" alt="gras"></p>
 <p>修正後  </p>
 <p>addItem の下に商品情報を保持するためのソースを追加してください。  </p>
@@ -355,12 +353,11 @@ methods の中にある「additem」の処理を下記のように修正して�
       })
     }
 </code></pre>
-<p>まず画面に表示されている商品のパラメーターをオブジェクト param に設定します。それぞれ商品名・商品説明・値段・数量・商品画像です。</p>
-<p>次に先ほど追加した「pushItem」を呼び出して商品情報を store に追加します。<br>書き方としては、this.$store.commit(&apos;呼び出す処理名&apos;,処理に渡す引数)で store の state の値を変更します。<br>第一引数を store/index.js の mutations に追加した pushItem にします。<br>第二引数は商品情報をもった変数 param にすることで、<br>store/index.js の state の itemList に商品情報を追加します。</p>
-<p>カート画面では store の保持している itemList を、getters を使用することでカート画面上に表示させています。</p>
+<p>まず画面に表示されている商品のパラメーターをオブジェクト param に設定します。<br>それぞれ商品名・商品説明・値段・数量・商品画像です。</p>
+<p>次に先ほど追加した「pushItem」を呼び出して商品情報を store に追加します。<br>書き方としては、this.$store.commit(&apos;呼び出す処理名&apos;,処理に渡す引数)で<br>store の state の値を変更します。第一引数を store/index.js のmutations に追加した pushItem にします。<br>第二引数は商品情報をもった変数 param にすることで、<br>store/index.js の state の itemList に商品情報を追加します。</p>
+<p>カート画面では store の保持している itemList を、<br>getters を使用することでカート画面上に表示させています。</p>
 <h2 id="動作確認">4. 動作確認</h2>
-<p>動作確認をしてみましょう。
-商品詳細画面内の個数プルダウンで任意の商品数を選択肢し、商品を購入のボタンをクリックしてください。</p>
+<p>動作確認をしてみましょう。<br>商品詳細画面内の個数プルダウンで任意の商品数を選択肢し、<br>商品を購入のボタンをクリックしてください。</p>
 <p>下記のように完了のダイアログが表示され検索画面に遷移します。<br><img src="img/GoCart.png" alt="gras"><br>商品がカートに入っているか確認してみましょう。<br>画面右上のショッピングカートのアイコンをクリックすることで、カート画面へ遷移します。<br>カートに入れた商品が表示されることがわかるかと思います。<br><img src="img/detail_handson_3.jpg" alt="gras"></p>
 <p>次の手順では、今開いたカート画面のソースコードのリファクタリングを行います！<br>商品を何種類かカートへ追加し、カート画面へ遷移しましょう！</p>
 <div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#コード修正(商品情報詳細)">コード修正(商品情報詳細)</a></p><li><a href="#修正対象のソース">1. 修正対象のソース</a></li><li><a href="#商品をカートに追加するための機能を実装しよう。">2. 商品をカートに追加するための機能を実装しよう。</a></li><li><a href="#カートに入れる機能を追加しよう。">3. カートに入れる機能を追加しよう。</a></li><li><a href="#動作確認">4. 動作確認</a></li></ul></div><a href="#修正対象のソース" id="goTop"><i class="fa fa-arrow-up"></i></a>
@@ -406,7 +403,7 @@ methods の中にある「additem」の処理を下記のように修正して�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"コード修正(商品情報詳細)","level":"1.7","depth":1,"next":{"title":"コード修正(カート)","level":"1.8","depth":1,"path":"cart.md","ref":"cart.md","articles":[]},"previous":{"title":"コード修正(商品検索)","level":"1.6","depth":1,"path":"item_search.md","ref":"item_search.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"item_detail.md","mtime":"2022-06-21T11:36:11.527Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-21T11:43:12.859Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"コード修正(商品情報詳細)","level":"1.7","depth":1,"next":{"title":"コード修正(カート)","level":"1.8","depth":1,"path":"cart.md","ref":"cart.md","articles":[]},"previous":{"title":"コード修正(商品検索)","level":"1.6","depth":1,"path":"item_search.md","ref":"item_search.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"item_detail.md","mtime":"2022-06-23T10:30:29.632Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-23T10:48:25.668Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
